@@ -13,8 +13,10 @@ function hasProperty(obj, key) {
   // 错误方式3：hasOwnProperty判断
   // return obj.hasOwnProperty(key)
 
-  // 正解
-  return key in obj
+  // 正解1
+  // return key in obj
+  // 正解2：ES6引入的静态语法，检查一个对象是否拥有某个属性，包括自有和继承自原型链上的属性。
+  return Reflect.has(obj, key)
 }
 
 const obj = { a: undefined }
