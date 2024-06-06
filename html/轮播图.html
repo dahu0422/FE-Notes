@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>轮播图</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      overflow: hidden;
+      position: relative;
+      width: 600px;
+      height: 150px;
+      background-color: red;
+    }
+
+    .carousel {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      background-color: yellow;
+      transition: 0.5s;
+    }
+
+    .item {
+      width: 100%;
+      flex-shrink: 0;
+      background-color: greenyellow;
+    }
+
+    .indicators {
+      position: absolute;
+      left: 50%;
+      top: 75%;
+      transform: translate(-50%, -75%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .indicators div {
+      width: 12px;
+      height: 12px;
+      margin: 4px;
+      border-radius: 50%;
+      background-color: red;
+      cursor: pointer;
+    }
+
+    .indicators div.active {
+      background-color: rebeccapurple;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="carousel">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+    <div class="indicators">
+      <div class="active"></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</body>
+
+<script>
+  const doms = {
+    carouselRef: document.querySelector('.carousel'),
+    indicators: document.querySelectorAll('.indicators div'),
+  }
+  doms.indicators.forEach((ref, index) => {
+    ref.addEventListener('click', () => {
+      moveTo(index)
+    })
+  })
+  function moveTo (index) {
+    doms.carouselRef.style.transform = `translateX(-${index}00%)`
+
+    const activeRef = document.querySelector('.active')
+    activeRef.classList.remove('active')
+    doms.indicators[index].classList.add('active')
+  }
+</script>
+
+</html>
