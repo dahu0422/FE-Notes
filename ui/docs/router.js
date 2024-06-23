@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import InputText from './snippets/input-text/basic.vue'
+import InputText from './components/InpueText.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
