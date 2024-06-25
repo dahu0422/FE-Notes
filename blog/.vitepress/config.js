@@ -18,7 +18,10 @@ export default {
       {
         text: 'HTML',
         link: '/interview/html/',
-        items: [{ text: 'html5', link: '/interview/html/html5.md' }],
+        items: [
+          { text: 'html5', link: '/interview/html/html5.md' },
+          { text: '响应式设计', link: '/interview/html/响应式设计.md' },
+        ],
       },
       {
         text: 'CSS',
@@ -28,7 +31,8 @@ export default {
         text: 'JS',
         link: '/interview/js/',
         items: [
-          { text: 'JavaScript数据类型', link: '/interview/js/数据类型.md' },
+          { text: '数据类型', link: '/interview/js/数据类型.md' },
+          { text: '数据类型检测', link: '/interview/js/数据类型检测.md' },
         ],
       },
     ],
