@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>File Upload</title>
+</head>
+
+<body>
+  <!-- <form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button type="submit">Upload</button>
+  </form> -->
+  <input type="file" name="file" />
+  <button>upload</button>
+
+  <script>
+    const input = document.querySelector('input');
+    const button = document.querySelector('button');
+
+    button.addEventListener('click', () => {
+      const formData = new FormData();
+      formData.append('file', input.files[0]);
+      fetch('/upload', {
+        method: 'POST',
+        body: formData,
+      })
+    })
+  </script>
+</body>
+
+</html>
