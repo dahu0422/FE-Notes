@@ -11,6 +11,7 @@ export default {
           { text: 'HTML', link: '/interview/html/' },
           { text: 'CSS', link: '/interview/css' },
           { text: 'JavaScript', link: '/interview/js' },
+          { text: '🍣', link: '/interview/write-code' },
         ],
       },
     ],
@@ -33,6 +34,17 @@ export default {
         items: [
           { text: '数据类型', link: '/interview/js/数据类型.md' },
           { text: '数据类型检测', link: '/interview/js/数据类型检测.md' },
+          { text: '原型与原型链', link: '/interview/js/原型与原型链.md' },
+        ],
+      },
+      {
+        text: '🍣',
+        link: '/interview/write-code',
+        items: [
+          {
+            text: 'instanceof',
+            link: '/interview/write-code/instanceof.md',
+          },
         ],
       },
     ],
