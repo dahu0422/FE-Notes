@@ -3,9 +3,22 @@ const app = express()
 const path = require('path')
 const multer = require('multer')
 
-const upload = multer({ dest: 'uploads/' })
+const multerStorage = multer.diskStorage({
+  // 文件存储的目录
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/')
+  },
+  // 文件存储的名称
+  filename: (req, file, cb) => {
+    console.log(file)
+    const fileName = Buffer.from(file.originalname, 'latin1').toString('utf-8')
+    cb(null, fileName)
+  },
+})
+
+const upload = multer({ storage: multerStorage })
+
 app.post('/upload', upload.single('file'), (req, res) => {
-  console.log(req.file)
   res.status(200).json({
     status: 'success',
     data: 'ok',
