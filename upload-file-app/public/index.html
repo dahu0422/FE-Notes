@@ -14,14 +14,66 @@
     const input = document.querySelector('input');
     const button = document.querySelector('button');
 
-    button.addEventListener('click', () => {
-      const formData = new FormData();
-      formData.append('file', input.files[0]);
-      fetch('/upload', {
-        method: 'POST',
-        body: formData,
-      })
+    button.addEventListener('click', async () => {
+      const uploadId = await beforeUploadFile()
+      let fileChunks = sliceFile(input.files[0])
+      await uploadChunks(uploadId, fileChunks)
+      await mergeFile(uploadId)
     })
+
+    async function beforeUploadFile () {
+      const id = await fetch("/beforeUpload")
+        .then((response) => response.json())
+        .then(({ data }) => data.id);
+      return id
+    }
+
+    /**
+     * 对文件进行切片
+     * @param {File} file 
+     * @param {Number} chunkSize 
+     */
+    function sliceFile (file, chunkSize = 1024 * 1024) {
+      const chunks = [];
+      for (let i = 0; i < file.size; i += chunkSize) {
+        let blob = file.slice(i, i + chunkSize)
+        chunks.push(blob)
+      }
+      return chunks
+    }
+
+    /**
+     * 上传切片
+     * @param {String} uploadId
+     * @param {Array} fileChunks 
+     */
+    async function uploadChunks (uploadId, fileChunks) {
+      const reqs = fileChunks.map((blob, index) => {
+        // 修改文件名
+        let blobName = `${uploadId}-${index}`
+        let blobFile = new File([blob], blobName)
+
+        const formData = new FormData();
+        formData.append('file', blobFile);
+        fetch(`/upload/${uploadId}`, {
+          method: 'POST',
+          body: formData
+        })
+      })
+      // 并发请求
+      await Promise.all(reqs).then(() => {
+        console.log('上传成功')
+      })
+    }
+
+    /**
+     * 合并文件
+     */
+    function mergeFile (id) {
+      fetch(`/mergeFile/${id}`).then(res => {
+        console.log(res)
+      })
+    }
   </script>
 </body>
 
