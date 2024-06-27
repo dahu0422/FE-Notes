@@ -36,6 +36,12 @@ export default {
           { text: '数据类型检测', link: '/interview/js/数据类型检测.md' },
           { text: '原型与原型链', link: '/interview/js/原型与原型链.md' },
           { text: '执行上下文', link: '/interview/js/执行上下文.md' },
+          {
+            text: 'File API',
+            items: [
+              { text: 'File和Blob', link: '/interview/js/File和Blob.md' },
+            ],
+          },
         ],
       },
       {
