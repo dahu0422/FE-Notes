@@ -35,16 +35,15 @@ export default {
           { text: '数据类型', link: '/interview/js/数据类型.md' },
           { text: '数据类型检测', link: '/interview/js/数据类型检测.md' },
           { text: '原型与原型链', link: '/interview/js/原型与原型链.md' },
+          { text: '执行上下文', link: '/interview/js/执行上下文.md' },
         ],
       },
       {
         text: '🍣',
         link: '/interview/write-code',
         items: [
-          {
-            text: 'instanceof',
-            link: '/interview/write-code/instanceof.md',
-          },
+          { text: 'instanceof', link: '/interview/write-code/myInstanceof.md' },
+          { text: 'new', link: '/interview/write-code/myNewFn.md' },
         ],
       },
     ],
