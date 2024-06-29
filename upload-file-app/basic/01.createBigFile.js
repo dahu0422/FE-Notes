@@ -3,7 +3,7 @@ const fs = require('fs')
 
 const writeStream = fs.createWriteStream('../assets/bigText.txt')
 
-for (let i = 0; i < 100000; i++) {
+for (let i = 0; i < 10000000; i++) {
   writeStream.write(`这是第${i}行\n`)
 }
 writeStream.end()

@@ -7,4 +7,4 @@ server.on('request', (request, response) => {
   const stream = fs.createReadStream('../assets/bigText.txt')
   stream.pipe(response)
 })
-server.listen(8888)
+server.listen(8889)
