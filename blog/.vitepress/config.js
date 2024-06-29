@@ -45,6 +45,10 @@ export default {
         ],
       },
       {
+        text: 'node',
+        items: [{ text: 'Stream 类', link: '/interview/node/stream.md' }],
+      },
+      {
         text: '🍣',
         link: '/interview/write-code',
         items: [
