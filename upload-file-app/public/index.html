@@ -18,11 +18,11 @@
       const uploadId = await beforeUploadFile()
       let fileChunks = sliceFile(input.files[0])
       await uploadChunks(uploadId, fileChunks)
-      await mergeFile(uploadId)
+      // await mergeFile(uploadId)
     })
 
     async function beforeUploadFile () {
-      const id = await fetch("/beforeUpload")
+      const id = await fetch("/api/v1/upload/create-upload-id")
         .then((response) => response.json())
         .then(({ data }) => data.id);
       return id
@@ -55,7 +55,7 @@
 
         const formData = new FormData();
         formData.append('file', blobFile);
-        fetch(`/upload/${uploadId}`, {
+        fetch(`/api/v1/upload/${uploadId}`, {
           method: 'POST',
           body: formData
         })
