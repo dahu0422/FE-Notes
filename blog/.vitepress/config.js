@@ -36,6 +36,7 @@ export default {
           { text: '数据类型检测', link: '/interview/js/数据类型检测.md' },
           { text: '原型与原型链', link: '/interview/js/原型与原型链.md' },
           { text: '执行上下文', link: '/interview/js/执行上下文.md' },
+          { text: '深拷贝', link: '/interview/js/深拷贝.md' },
           {
             text: 'File API',
             items: [
@@ -54,6 +55,7 @@ export default {
         items: [
           { text: 'instanceof', link: '/interview/write-code/myInstanceof.md' },
           { text: 'new', link: '/interview/write-code/myNewFn.md' },
+          { text: 'deepClone', link: '/interview/write-code/deepClone.md' },
         ],
       },
     ],
