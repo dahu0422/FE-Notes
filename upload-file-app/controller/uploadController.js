@@ -53,3 +53,20 @@ exports.uploadFile = (req, res) => {
     console.log(error)
   }
 }
+// 垃圾版实现
+const resolvePost = (req) =>
+  new Promise((resolve) => {
+    let chunk = ''
+    req.on('data', (data) => {
+      chunk += data
+    })
+    req.on('end', () => {
+      console.log(123)
+      resolve(JSON.parse(chunk))
+    })
+  })
+
+exports.mergeFile = async (req, res) => {
+  const fileId = req.params.id
+  console.log(fileId)
+}

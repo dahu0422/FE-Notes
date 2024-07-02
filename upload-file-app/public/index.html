@@ -18,7 +18,7 @@
       const uploadId = await beforeUploadFile()
       let fileChunks = sliceFile(input.files[0])
       await uploadChunks(uploadId, fileChunks)
-      // await mergeFile(uploadId)
+      await mergeFile(uploadId)
     })
 
     async function beforeUploadFile () {
@@ -70,7 +70,9 @@
      * 合并文件
      */
     function mergeFile (id) {
-      fetch(`/mergeFile/${id}`).then(res => {
+      fetch(`/api/v1/upload/merge-file/${id}`, {
+        method: 'POST'
+      }).then(res => {
         console.log(res)
       })
     }
