@@ -37,6 +37,7 @@ export default {
           { text: '原型与原型链', link: '/interview/js/原型与原型链.md' },
           { text: '执行上下文', link: '/interview/js/执行上下文.md' },
           { text: '深拷贝', link: '/interview/js/深拷贝.md' },
+          { text: 'Promise', link: '/interview/js/Promise.md' },
           {
             text: 'File API',
             items: [
