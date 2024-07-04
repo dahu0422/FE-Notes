@@ -35,7 +35,10 @@ export default {
           { text: '数据类型', link: '/interview/js/数据类型.md' },
           { text: '数据类型检测', link: '/interview/js/数据类型检测.md' },
           { text: '原型与原型链', link: '/interview/js/原型与原型链.md' },
-          { text: '执行上下文', link: '/interview/js/执行上下文.md' },
+          {
+            text: '执行上下文、作用域、作用域链',
+            link: '/interview/js/执行上下文、作用域和作用域链.md',
+          },
           { text: '深拷贝', link: '/interview/js/深拷贝.md' },
           {
             text: '异步函数',
