@@ -60,6 +60,7 @@ export default {
           { text: 'instanceof', link: '/interview/write-code/myInstanceof.md' },
           { text: 'new', link: '/interview/write-code/myNewFn.md' },
           { text: 'deepClone', link: '/interview/write-code/deepClone.md' },
+          { text: 'myPromise', link: '/interview/write-code/myPromise.md' },
         ],
       },
     ],
