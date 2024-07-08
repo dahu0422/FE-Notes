@@ -50,6 +50,10 @@ export default {
               { text: 'File和Blob', link: '/interview/js/File和Blob.md' },
             ],
           },
+          {
+            text: 'AJAX',
+            link: '/interview/js/ajax.md',
+          },
         ],
       },
       {
