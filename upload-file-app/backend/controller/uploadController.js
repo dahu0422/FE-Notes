@@ -11,19 +11,6 @@ exports.createUploadId = (req, res) => {
   })
 }
 
-// const multerStorage = multer.diskStorage({
-//   // 文件存储的目录
-//   destination: (req, file, cb) => {
-//     cb(null, 'uploads/')
-//   },
-//   // 文件存储的名称
-//   filename: (req, file, cb) => {
-//     const fileName = `${Buffer.from(file.originalname, 'latin1').toString(
-//       'utf-8'
-//     )}`
-//     cb(null, fileName)
-//   },
-// })
 const multerStorage = multer.diskStorage({
   // 文件存储的目录
   destination: (req, file, cb) => {
@@ -31,6 +18,7 @@ const multerStorage = multer.diskStorage({
   },
   // 文件存储的名称
   filename: (req, file, cb) => {
+    console.log(file)
     const fileName = `${Buffer.from(file.originalname, 'latin1').toString(
       'utf-8'
     )}`
@@ -53,20 +41,22 @@ exports.uploadFile = (req, res) => {
     console.log(error)
   }
 }
-// 垃圾版实现
-const resolvePost = (req) =>
-  new Promise((resolve) => {
-    let chunk = ''
-    req.on('data', (data) => {
-      chunk += data
-    })
-    req.on('end', () => {
-      console.log(123)
-      resolve(JSON.parse(chunk))
-    })
-  })
 
-exports.mergeFile = async (req, res) => {
-  const fileId = req.params.id
-  console.log(fileId)
+exports.uploadSingleFile = (req, res) => {
+  console.log('接收到请求')
+  // console.log(12)
+  // try {
+  //   const upload = multer({ storage: multerStorage }).single('file')
+  //   upload(req, res, (err) => {
+  //     if (err) {
+  //       return res.status(400).json({ error: err.message })
+  //     }
+  //   })
+  //   res.status(200).json({
+  //     status: 'success',
+  //     data: 'ok',
+  //   })
+  // } catch (error) {
+  //   console.log(error)
+  // }
 }

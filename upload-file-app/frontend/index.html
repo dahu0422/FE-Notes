@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>File Upload</title>
+  <!-- <script src="./spark-md5.js"></script> -->
 </head>
 
 <body>
@@ -17,21 +18,16 @@
     button.addEventListener('click', async () => {
       const uploadId = await beforeUploadFile()
       let fileChunks = sliceFile(input.files[0])
+      // const fileHash = await hash(fileChunks)
       await uploadChunks(uploadId, fileChunks)
-      await mergeFile(uploadId)
+      // await mergeFile(uploadId)
     })
-
-    async function beforeUploadFile () {
-      const id = await fetch("/api/v1/upload/create-upload-id")
-        .then((response) => response.json())
-        .then(({ data }) => data.id);
-      return id
-    }
 
     /**
      * 对文件进行切片
      * @param {File} file 
      * @param {Number} chunkSize 
+     * @returns {Array} 切片数组
      */
     function sliceFile (file, chunkSize = 1024 * 1024) {
       const chunks = [];
@@ -42,6 +38,35 @@
       return chunks
     }
 
+    /**
+     * 计算文件hash
+     * @param {Array} chunks 
+     * @returns {String} hash值
+     */
+    function hash (chunks) {
+      return new Promise((resolve, reject) => {
+        const spark = new SparkMD5();
+        for (let i = 0; i < chunks.length; i++) {
+          const blob = chunks[i]
+          const reader = new FileReader()
+          // 读取文件内容，生成hash
+          reader.onload = ($evt) => {
+            const bytes = $evt.target.result
+            spark.append(bytes)
+          }
+          const val = reader.readAsArrayBuffer(blob)
+        }
+        resolve(spark.end())
+      })
+    }
+
+
+    async function beforeUploadFile () {
+      const id = await fetch("/api/v1/upload/create-upload-id")
+        .then((response) => response.json())
+        .then(({ data }) => data.id);
+      return id
+    }
     /**
      * 上传切片
      * @param {String} uploadId
