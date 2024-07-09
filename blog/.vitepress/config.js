@@ -50,10 +50,8 @@ export default {
               { text: 'File和Blob', link: '/interview/js/File和Blob.md' },
             ],
           },
-          {
-            text: 'AJAX',
-            link: '/interview/js/ajax.md',
-          },
+          { text: 'AJAX', link: '/interview/js/ajax.md' },
+          { text: '面向对象', link: '/interview/js/object-orientation.md' },
         ],
       },
       {
