@@ -16,9 +16,9 @@ function setProgress(value) {
   doms.progress.style.setProperty('--percent', value)
 }
 
-doms.select.addEventListener('click', () => {
-  doms.selectFile.click()
-})
+// doms.select.addEventListener('click', () => {
+//   doms.selectFile.click()
+// })
 
 let cancelUpload = null
 function cancel() {
