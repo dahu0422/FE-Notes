@@ -1,8 +1,15 @@
 .upload {
+  --border-color: #dcdfe6;
+  --font-color: #8c939d;
+  --primary-color: #409eff;
+  --danger-color: #eb685e;
+}
+
+.upload {
   position: relative;
   width: 250px;
   height: 250px;
-  border: 2px dashed #ccc;
+
   &.select,
   &.progress,
   &.result {
@@ -10,78 +17,92 @@
     .upload-progress,
     .upload-result {
       display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
     }
   }
 }
 
 /* 初始化默认样式 */
-.upload.select {
-  .upload-select  {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    font-size: 80px;
-    cursor: pointer;
-    input[type="file"] {
-      display: none;
-    }
-  }
-  img {
-    display: none;
-  }
-}
-
-/* 选择文件后上传进度样式 */
-.upload.progress {
+.upload.select .upload-select {
   display: flex;
   align-items: center;
   justify-content: center;
-  .upload-progress {
-    box-sizing: border-box;
+  cursor: pointer;
+  border: 1px dashed var(--border-color);
+  &:hover {
+    border-color: var(--primary-color);
+  }
+  /* 加号 */
+  &::before, &::after {
+    content: '';
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 12px;
-    width: 100%;
-    height: 100%;
-    z-index: 100;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: #fff;
-    .progress-bar {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      height: 8px;
-      border-radius: 10px;
-      background-color: #fff;
-      &::before {
-        content: '';
-        display: block;
-        height: 100%;
-        width: var(--percent);
-        border-radius: 10px;
-        background: #00AEEC;
-      }
+    width: 30px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--font-color);
+  }
+  &::after {
+    transform: rotate(90deg);
+  }
+  /* 隐藏文件选择框 */
+  input[type='file'] {
+    display: none;
+  }
+}
+.upload.select .preview {
+  display: none;
+}
+
+
+/* 选择文件后上传进度样式 */
+.upload.progress .upload-progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  .progress-bar {
+    position: absolute;
+    width: 90%;
+    height: 8px;
+    border-radius: 10px;
+    background-color: #fff;
+    /* 上传进度 */
+    &::before {
+      counter-reset: progress var(--percent);
+      content: counter(progress) '%';
+      position: absolute;
+      left: 50%;
+      top: -25px;
+      transform: translate(-50%);
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      border-radius: inherit;
+      width: calc(1% * var(--percent));
+      height: 100%;
+      background-color: var(--primary-color);
     }
   }
-  img {
+  .progress-bar button {
     position: absolute;
-    display: block;
-    z-index: 1;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
-.upload.result {
-  .upload-result {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 2;
-  }
+.upload.result .upload-result {
+  display: block;
+  border: 1px dashed var(--border-color);
 }
-  
+.upload-result button {
+  position: absolute;
+  right: 0;
+  top: 0;
+}

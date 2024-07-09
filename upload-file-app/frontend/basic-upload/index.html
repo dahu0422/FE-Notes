@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基本上传</title>
+</head>
+
+<body>
+  <input type="file" name="file">
+</body>
+
+<script>
+  const inp = document.querySelector('input[type=file]')
+  inp.addEventListener('change', (e) => {
+    const file = e.target.files[0]
+    const form = new FormData()
+    form.append('file', file)
+
+    const xhr = new XMLHttpRequest()
+    xhr.open('POST', 'http://localhost:3000/api/v1/upload/single')
+    xhr.addEventListener('load', (e) => {
+      try {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+          const resp = xhr.responseText
+          console.log('上传成功：', xhr);
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    })
+    xhr.send()
+  })
+</script>
+
+</html>
