@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多文件上传</title>
+</head>
+
+<body>
+  <!-- 选择文件 -->
+  <input type="file" name="file" multiple />
+</body>
+
+<script>
+  // 多文件上传有两种设计方式：1. 每个文件文件一个请求；2.文件合并成一个请求
+
+  const inp = document.querySelector('input[type=file]')
+  inp.addEventListener('change', (e) => {
+    const fileList = e.target.files
+    // multipleReqs(fileList)
+    singleReq(fileList)
+  })
+
+  // 第一种方式：每个文件一个请求。
+  // 优点：可以追踪每个文件的状态，文件上传之间互不影响。
+  // 缺点：请求数量多增加服务器负担，网络开销较大。
+  function multipleReqs (files) {
+    const reqList = []
+    for (const file of files) {
+      const req = new Promise((resolve, reject) => {
+        const form = new FormData()
+        form.append('file', file)
+        fetch('http://localhost:3000/api/v1/upload/single', {
+          method: 'POST',
+          body: form
+        }).then((response) => resolve(response.json()))
+      })
+      reqList.push(req)
+    }
+    Promise.all(reqList).then((reslove) => {
+      console.log('上传成功', reslove);
+    })
+  }
+
+  // 第二种方式：将多个文件合并为一个请求发送；
+  // 优点：减少了网络开销，只需要发一次请求
+  // 缺点：某一个文件保存失败，请求就会失败
+  function singleReq (files) {
+    const form = new FormData()
+    for (const file of files) {
+      form.append('file', file, file.name)
+    }
+    fetch('http://localhost:3000/api/v1/upload/multiple', {
+      method: 'POST',
+      body: form,
+    }).then((response) =>
+      response.json()
+    ).then((data) => {
+      console.log(data);
+    })
+  }
+</script>
+
+</html>

@@ -1,16 +1,12 @@
 const express = require('express')
 const {
-  createUploadId,
-  uploadFile,
-  mergeFile,
-  uploadSingleFile,
+  signleUpload,
+  multipleUplod,
 } = require('../controller/uploadController')
 
 const router = express.Router()
 
-router.route('/create-upload-id').get(createUploadId)
-
-router.route('/:id').post(uploadFile)
-router.route('/single').post(uploadSingleFile)
+router.route('/single').post(signleUpload)
+router.route('/multiple').post(multipleUplod)
 
 module.exports = router
