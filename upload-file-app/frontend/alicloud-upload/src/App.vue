@@ -1,5 +1,6 @@
 <script setup>
 import FileTable from './components/FileTable.vue'
+import DragArea from './components/DragArea.vue'
 import { useUpload } from './compositions/useUpload'
 
 const maxSize = 1024 * 1024
@@ -12,6 +13,7 @@ function handleFileChange(e) {
 </script>
 
 <template>
+  <DragArea></DragArea>
   <div class="operate">
     <el-button type="primary">
       文件上传

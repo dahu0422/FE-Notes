@@ -1,7 +1,7 @@
 # drag API
 用户选择一个可拖拽的（draggable）元素，拖拽至一个可放置（droppable）的元素，释放鼠标。
 
-## 拖拽事件：
+## 拖拽事件
 - drag：当拖拽元素或文本选中时触发。
 - dragstart：在**开始拖动**元素或被选择的文本时调用。
 - dragenter：在可拖动的元素或者被选择的文本**进入一个有效的放置目标**时触发。
@@ -28,5 +28,9 @@
 ```
 
 ## 示例
-1. 实现：将元素从一个div拖拽至另一个div中
-2. 实现：将元素拖拽至网格再拖回
+### 实现：将元素从一个div拖拽至另一个div中
+[基础拖拽源码](https://github.com/dahu0422/FE-Notes/tree/main/web-api/drag/basic)
+
+
+### 实现：将元素拖拽至网格再拖回
+[网格拖拽源码](https://github.com/dahu0422/FE-Notes/tree/main/web-api/drag/grid-drag)

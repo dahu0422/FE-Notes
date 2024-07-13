@@ -17,7 +17,7 @@ export const fileSize = (size) => {
     unit = 'KB'
   }
   number = number.toFixed(2)
-  return number + unit
+  return +number + unit
 }
 
 /**
