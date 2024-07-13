@@ -52,6 +52,10 @@ export default {
           },
           { text: 'AJAX', link: '/interview/js/ajax.md' },
           { text: '面向对象', link: '/interview/js/object-orientation.md' },
+          {
+            text: 'Web API',
+            items: [{ text: 'drag', link: '/interview/js/drag.md' }],
+          },
         ],
       },
       {
