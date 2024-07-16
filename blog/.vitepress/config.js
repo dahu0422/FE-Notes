@@ -32,8 +32,12 @@ export default {
         text: 'JS',
         link: '/interview/js/',
         items: [
-          { text: '数据类型', link: '/interview/js/数据类型.md' },
-          { text: '数据类型检测', link: '/interview/js/数据类型检测.md' },
+          { text: '数据类型', link: '/interview/js/01.数据类型.md' },
+          {
+            text: 'undefined VS null',
+            link: '/interview/js/02.undefined VS null.md',
+          },
+          { text: '数据类型检测', link: '/interview/js/03.数据类型检测.md' },
           { text: '原型与原型链', link: '/interview/js/原型与原型链.md' },
           {
             text: '执行上下文、作用域、作用域链',
@@ -59,6 +63,10 @@ export default {
         ],
       },
       {
+        text: 'Vue',
+        items: [{ text: '响应式原理', link: '/interview/vue/响应式原理.md' }],
+      },
+      {
         text: 'node',
         items: [{ text: 'Stream 类', link: '/interview/node/stream.md' }],
       },
@@ -69,7 +77,10 @@ export default {
           { text: 'instanceof', link: '/interview/write-code/myInstanceof.md' },
           { text: 'new', link: '/interview/write-code/myNewFn.md' },
           { text: 'deepClone', link: '/interview/write-code/deepClone.md' },
-          { text: 'myPromise', link: '/interview/write-code/myPromise.md' },
+          // { text: 'myPromise', link: '/interview/write-code/myPromise.md' },
+          { text: '防抖函数', link: '/interview/write-code/debounce.md' },
+          { text: '日期格式化', link: '/interview/write-code/formatDate.md' },
+          { text: '数组去重', link: '/interview/write-code/数组去重.md' },
         ],
       },
     ],
