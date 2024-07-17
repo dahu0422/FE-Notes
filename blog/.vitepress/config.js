@@ -38,28 +38,55 @@ export default {
             link: '/interview/js/02.undefined VS null.md',
           },
           { text: '数据类型检测', link: '/interview/js/03.数据类型检测.md' },
-          { text: '原型与原型链', link: '/interview/js/原型与原型链.md' },
           {
-            text: '执行上下文、作用域、作用域链',
-            link: '/interview/js/执行上下文、作用域和作用域链.md',
-          },
-          { text: '深拷贝', link: '/interview/js/深拷贝.md' },
-          {
-            text: '异步函数',
-            items: [{ text: 'Promise', link: '/interview/js/Promise.md' }],
+            text: 'new 操作符做了什么',
+            link: '/interview/js/04.new操作符做了什么.md',
           },
           {
-            text: 'File API',
+            text: 'call、apply、bind的区别',
+            link: '/interview/js/05.call、apply、bind的区别.md',
+          },
+          { text: '原型与原型链', link: '/interview/js/06.原型与原型链.md' },
+          {
+            text: 'ES6',
+            link: '/interview/js/ES6.md',
             items: [
-              { text: 'File和Blob', link: '/interview/js/File和Blob.md' },
+              {
+                text: '箭头函数 VS 普通函数',
+                link: '/interview/js/es6/02.箭头函数 VS 普通函数.md',
+              },
             ],
           },
-          { text: 'AJAX', link: '/interview/js/ajax.md' },
-          { text: '面向对象', link: '/interview/js/object-orientation.md' },
           {
-            text: 'Web API',
-            items: [{ text: 'drag', link: '/interview/js/drag.md' }],
+            text: '深入系列',
+            items: [
+              {
+                text: '高阶函数',
+                link: '/interview/js/深入系列/01.高阶函数.md',
+              },
+            ],
           },
+          // {
+          //   text: '执行上下文、作用域、作用域链',
+          //   link: '/interview/js/执行上下文、作用域和作用域链.md',
+          // },
+          // { text: '深拷贝', link: '/interview/js/深拷贝.md' },
+          // {
+          //   text: '异步函数',
+          //   items: [{ text: 'Promise', link: '/interview/js/Promise.md' }],
+          // },
+          // {
+          //   text: 'File API',
+          //   items: [
+          //     { text: 'File和Blob', link: '/interview/js/File和Blob.md' },
+          //   ],
+          // },
+          // { text: 'AJAX', link: '/interview/js/ajax.md' },
+          // { text: '面向对象', link: '/interview/js/object-orientation.md' },
+          // {
+          //   text: 'Web API',
+          //   items: [{ text: 'drag', link: '/interview/js/drag.md' }],
+          // },
         ],
       },
       {
