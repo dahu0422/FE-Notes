@@ -47,6 +47,7 @@ export default {
             link: '/interview/js/05.call、apply、bind的区别.md',
           },
           { text: '原型与原型链', link: '/interview/js/06.原型与原型链.md' },
+          { text: '闭包', link: '/interview/js/07.闭包.md' },
           {
             text: 'ES6',
             link: '/interview/js/ES6.md',
@@ -54,6 +55,10 @@ export default {
               {
                 text: '箭头函数 VS 普通函数',
                 link: '/interview/js/es6/02.箭头函数 VS 普通函数.md',
+              },
+              {
+                text: 'let、const、var之间的区别',
+                link: '/interview/js/es6/03.let、const、var之间的区别.md',
               },
             ],
           },
@@ -63,6 +68,10 @@ export default {
               {
                 text: '高阶函数',
                 link: '/interview/js/深入系列/01.高阶函数.md',
+              },
+              {
+                text: '事件循环',
+                link: '/interview/js/深入系列/02.事件循环.md',
               },
             ],
           },
@@ -89,10 +98,10 @@ export default {
           // },
         ],
       },
-      {
-        text: 'Vue',
-        items: [{ text: '响应式原理', link: '/interview/vue/响应式原理.md' }],
-      },
+      // {
+      //   text: 'Vue',
+      //   items: [{ text: '响应式原理', link: '/interview/vue/响应式原理.md' }],
+      // },
       {
         text: 'node',
         items: [{ text: 'Stream 类', link: '/interview/node/stream.md' }],
@@ -103,8 +112,9 @@ export default {
         items: [
           { text: 'instanceof', link: '/interview/write-code/myInstanceof.md' },
           { text: 'new', link: '/interview/write-code/myNewFn.md' },
+          { text: 'apply', link: '/interview/write-code/myApply.md' },
+          { text: 'call', link: '/interview/write-code/myCall.md' },
           { text: 'deepClone', link: '/interview/write-code/deepClone.md' },
-          // { text: 'myPromise', link: '/interview/write-code/myPromise.md' },
           { text: '防抖函数', link: '/interview/write-code/debounce.md' },
           { text: '日期格式化', link: '/interview/write-code/formatDate.md' },
           { text: '数组去重', link: '/interview/write-code/数组去重.md' },
