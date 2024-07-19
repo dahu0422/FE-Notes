@@ -20,6 +20,10 @@ export default {
         text: 'HTML',
         link: '/interview/html/',
         items: [
+          {
+            text: 'DOM 文档对象模型',
+            link: '/interview/html/DOM文档对象模型.md',
+          },
           { text: 'html5', link: '/interview/html/html5.md' },
           { text: '响应式设计', link: '/interview/html/响应式设计.md' },
         ],
