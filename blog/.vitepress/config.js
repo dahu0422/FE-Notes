@@ -24,8 +24,15 @@ export default {
             text: 'DOM 文档对象模型',
             link: '/interview/html/DOM文档对象模型.md',
           },
+          {
+            text: 'BOM 文档对象模型',
+            link: '/interview/html/BOM浏览器对象模型.md',
+          },
+          {
+            text: '事件',
+            link: '/interview/html/事件.md',
+          },
           { text: 'html5', link: '/interview/html/html5.md' },
-          { text: '响应式设计', link: '/interview/html/响应式设计.md' },
         ],
       },
       {
@@ -77,6 +84,10 @@ export default {
                 text: '事件循环',
                 link: '/interview/js/深入系列/02.事件循环.md',
               },
+              {
+                text: '页面渲染',
+                link: '/interview/js/深入系列/03.页面渲染.md',
+              },
             ],
           },
           // {
@@ -102,10 +113,16 @@ export default {
           // },
         ],
       },
-      // {
-      //   text: 'Vue',
-      //   items: [{ text: '响应式原理', link: '/interview/vue/响应式原理.md' }],
-      // },
+      {
+        text: 'Vue',
+        link: '/interview/vue/01.mvvm设计模式与vue框架.md',
+        items: [
+          {
+            text: '生命周期',
+            link: '/interview/vue/02.生命周期.md',
+          },
+        ],
+      },
       {
         text: 'node',
         items: [{ text: 'Stream 类', link: '/interview/node/stream.md' }],

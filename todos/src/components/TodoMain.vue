@@ -1,8 +1,17 @@
 <script setup>
+import { defineProps, defineEmits, onBeforeMount, onMounted } from 'vue'
+
 const props = defineProps({
   todoList: { type: Array, required: true }
 })
 const emit = defineEmits(['updateTodo'])
+
+onBeforeMount(() => {
+  console.log('子组件beforeMounted')
+})
+onMounted(() => {
+  console.log('子组件mounted')
+})
 </script>
 
 <template>

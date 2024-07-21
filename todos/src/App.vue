@@ -1,10 +1,19 @@
 <script setup>
+import { onMounted, onBeforeMount } from 'vue'
+
 import TodoHeader from './components/TodoHeader.vue'
 import TodoMain from './components/TodoMain.vue'
 import TodoFooter from './components/TodoFooter.vue'
 
 import { useTodos } from './compositions/useTodos.js'
 const { todoList, pendingTodoList, addTodo, updateTodo, deleteTodo, clearCompleted } = useTodos()
+
+onBeforeMount(() => {
+  console.log('父组件beforeMounted')
+})
+onMounted(() => {
+  console.log('父组件mounted')
+})
 </script>
 
 <template>

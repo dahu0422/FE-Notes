@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>发布订阅模式</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+  // const vm = new Vue()
+  // 注册事件（订阅）
+  // vm.$on('test', function () {
+  //   console.log('test')
+  // })
+  // vm.$on('test', function() {
+  //   console.log('test2');
+  // })
+  // 触发事件（发布）
+  // vm.$emit('test')
+
+  class EventEmitter {
+    constructor() {
+      // {'click': [fn1, fn2], 'change': [fn]}
+      this.subs = Object.create(null)
+    }
+    // 注册事件
+    $on (eventType, handler) {
+      this.subs[eventType] = this.subs[eventType] || []
+      this.subs[eventType].push(handler)
+    }
+    // 订阅事件
+    $emit (eventType) {
+      if (this.subs[eventType]) {
+        this.subs[eventType].forEach(handler => {
+          handler
+        })
+      }
+    }
+  }
+
+
+</script>
+
+</html>
