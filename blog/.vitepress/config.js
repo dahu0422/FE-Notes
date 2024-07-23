@@ -21,6 +21,10 @@ export default {
         link: '/interview/html/',
         items: [
           {
+            text: 'meta 标签',
+            link: '/interview/html/01.meta标签.md',
+          },
+          {
             text: 'DOM 文档对象模型',
             link: '/interview/html/DOM文档对象模型.md',
           },
@@ -117,6 +121,19 @@ export default {
         text: 'Vue',
         link: '/interview/vue/01.mvvm设计模式与vue框架.md',
         items: [
+          {
+            text: 'vue-router',
+            items: [
+              {
+                text: '路由模式',
+                link: '/interview/vue/vue-router/01.路由模式.md',
+              },
+              {
+                text: '导航守卫',
+                link: '/interview/vue/vue-router/02.导航守卫.md',
+              },
+            ],
+          },
           {
             text: '生命周期',
             link: '/interview/vue/02.生命周期.md',
