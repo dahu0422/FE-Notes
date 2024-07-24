@@ -25,6 +25,14 @@ export default {
             link: '/interview/html/01.meta标签.md',
           },
           {
+            text: 'img 标签',
+            link: '/interview/html/02.img标签.md',
+          },
+          {
+            text: 'video 标签',
+            link: '/interview/html/03.video标签.md',
+          },
+          {
             text: 'DOM 文档对象模型',
             link: '/interview/html/DOM文档对象模型.md',
           },

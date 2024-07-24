@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绘制笑脸</title>
+  <style>
+    canvas {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body onload="draw()">
+  <canvas width="150" height="150"></canvas>
+</body>
+
+<script>
+  function draw () {
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d')
+    ctx.beginPath()
+
+    ctx.arc(75, 75, 50, 0, Math.PI * 2, true) // 绘制笑脸
+    ctx.moveTo(110, 75)
+    ctx.arc(75, 75, 35, 0, Math.PI, false) // 嘴巴
+    ctx.moveTo(65, 65)
+    ctx.arc(60, 65, 5, 0, Math.PI * 2, true) // 左眼
+    ctx.moveTo(95, 65)
+    ctx.arc(90, 65, 5, 0, Math.PI * 2, true) // 右眼
+    ctx.stroke()
+  }
+</script>
+
+</html>
