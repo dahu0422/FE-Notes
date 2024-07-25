@@ -126,9 +126,16 @@ export default {
         ],
       },
       {
-        text: 'Vue',
+        text: 'Vue系列',
         link: '/interview/vue/01.mvvm设计模式与vue框架.md',
         items: [
+          {
+            text: 'vue',
+            items: [
+              { text: '响应式原理', link: '/interview/vue/03.响应式原理' },
+              { text: '生命周期', link: '/interview/vue/02.生命周期.md' },
+            ],
+          },
           {
             text: 'vue-router',
             items: [
@@ -141,10 +148,6 @@ export default {
                 link: '/interview/vue/vue-router/02.导航守卫.md',
               },
             ],
-          },
-          {
-            text: '生命周期',
-            link: '/interview/vue/02.生命周期.md',
           },
         ],
       },
