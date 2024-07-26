@@ -9,22 +9,34 @@ window 对象是 BOM的 核心对象，window 对象在浏览器中有两重身�
 页面中定义的所有对象、变量、函数都以 window 作为其 Global 对象。
 
 ## location 对象
-location 对象用于获取**浏览器的地址栏信息**，location 对象有如下属性：
-- href：浏览器的地址栏信息；
-- protocol：浏览器的地址栏协议；
-- host：浏览器的地址栏主机；
-- pathname：浏览器的地址栏路径；
-- search：浏览器的地址栏参数；
-- hash：浏览器的地址栏哈希；
+location 对象用于获取**浏览器的地址栏信息**，有如下属性：
+- href：浏览器的地址栏**信息**；
+- protocol：浏览器的地址栏**协议**；
+- host：浏览器的地址栏**主机**；
+- pathname：浏览器的地址栏**路径**；
+- search：浏览器的地址栏**参数**；
+- hash：浏览器的地址栏**哈希**；
 ```javascript
-以 https://cn.bing.com/search?q=baidu&PC=U316&FORM=CHROMN 为例，location 对象的属性如下：
+// 以 https://cn.bing.com/search?q=baidu&PC=U316&FORM=CHROMN 
 
-const url = window.location.href; // https://cn.bing.com/search?q=baidu&PC=U316&FORM=CHROMN
-const protocol = window.location.protocol; // https:
-const host = window.location.host; // cn.bing.com
-const pathname = window.location.pathname; // /search
-const search = window.location.search; // ?q=baidu&PC=U316&FORM=CHROMN
-const hash = window.location.hash; // #
+const url = window.location.href; 
+// https://cn.bing.com/search?q=baidu&PC=U316&FORM=CHROMN
+
+const protocol = window.location.protocol; 
+// https:
+
+const host = window.location.host; 
+// cn.bing.com
+
+const pathname = window.location.pathname; 
+// /search
+
+const search = window.location.search; 
+// ?q=baidu&PC=U316&FORM=CHROMN
+
+
+const hash = window.location.hash; 
+// #
 ```
 
 ## history 对象
@@ -33,7 +45,17 @@ history 对象用于**管理浏览器的历史记录**，history 对象有如下
 - back()：返回上一页；
 - forward()：前进一页；
 - go(n)：跳转到指定页面；
+- pushState(state, title, url)：在历史记录中添加一个新记录；
+- replaceState(state, title, url)：替换当前记录；
 
+popState 事件：每当同一个文档的浏览历史（即history对象）出现变化时，就会触发popstate事件。
+```js
+window.addEventListener('popstate', function(event) {
+  console.log('location: ' + document.location);
+  console.log('state: ' + JSON.stringify(event.state));
+});
+```
+注意：调用 `pushState()` 方法或 `replaceState()` 方法 ，并不会触发该事件。只有用户点击浏览器倒退按钮和前进按钮，或者使用 JavaScript 调用 `History.back()`、`History.forward()`、`History.go()` 方法时才会触发。
 
 ## navigator 对象
 navigator 对象提供了**有关浏览器的信息**，可用于获取用户代理的详细信息，navigator 对象常用属性：

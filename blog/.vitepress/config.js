@@ -18,20 +18,13 @@ export default {
     sidebar: [
       {
         text: 'HTML',
-        link: '/interview/html/',
+        link: '/interview/html/html5.md',
         items: [
-          {
-            text: 'meta 标签',
-            link: '/interview/html/01.meta标签.md',
-          },
-          {
-            text: 'img 标签',
-            link: '/interview/html/02.img标签.md',
-          },
-          {
-            text: 'video 标签',
-            link: '/interview/html/03.video标签.md',
-          },
+          { text: 'meta 标签', link: '/interview/html/01.meta标签.md' },
+          { text: 'script 标签', link: '/interview/html/02.script标签.md' },
+          { text: 'link 标签', link: '/interview/html/03.link标签.md' },
+          { text: 'img 标签', link: '/interview/html/04.img标签.md' },
+          { text: 'video 标签', link: '/interview/html/05.video标签.md' },
           {
             text: 'DOM 文档对象模型',
             link: '/interview/html/DOM文档对象模型.md',
@@ -40,11 +33,12 @@ export default {
             text: 'BOM 文档对象模型',
             link: '/interview/html/BOM浏览器对象模型.md',
           },
+          { text: '事件', link: '/interview/html/事件.md' },
+          { text: 'URL', link: '/interview/html/url.md' },
           {
-            text: '事件',
-            link: '/interview/html/事件.md',
+            text: 'URLSearchParams',
+            link: '/interview/html/url-search-params.md',
           },
-          { text: 'html5', link: '/interview/html/html5.md' },
         ],
       },
       {
