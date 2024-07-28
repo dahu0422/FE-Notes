@@ -150,6 +150,24 @@ export default {
         items: [{ text: 'Stream 类', link: '/interview/node/stream.md' }],
       },
       {
+        text: '网络',
+        items: [
+          {
+            text: '网络分层模型',
+            link: '/interview/network/01.网络分层模型.md',
+          },
+          { text: 'HTTP协议', link: '/interview/network/02.HTTP协议.md' },
+          { text: 'cookie', link: '/interview/network/03.cookie.md' },
+          { text: 'storage', link: '/interview/network/04.storage.md' },
+          { text: 'jwt', link: '/interview/network/05.jwt.md' },
+          { text: '同源策略', link: '/interview/network/06.同源策略.md' },
+          {
+            text: 'HTTP缓存协议',
+            link: '/interview/network/07.HTTP缓存协议.md',
+          },
+        ],
+      },
+      {
         text: '🍣',
         link: '/interview/write-code',
         items: [
