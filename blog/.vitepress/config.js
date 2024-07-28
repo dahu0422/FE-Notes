@@ -128,6 +128,7 @@ export default {
             items: [
               { text: '响应式原理', link: '/interview/vue/03.响应式原理' },
               { text: '生命周期', link: '/interview/vue/02.生命周期.md' },
+              { text: '组件通信方式', link: '/interview/vue/组件通信方式.md' },
             ],
           },
           {
