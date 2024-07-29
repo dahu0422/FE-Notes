@@ -11,4 +11,4 @@
 import './main.css'
 import footerHtml from './footer.html'
 
-document.write(footerHtml)
+document.body.innerHTML += footerHtml

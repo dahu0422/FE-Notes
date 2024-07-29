@@ -326,7 +326,10 @@ body {
   background-image: url(${___CSS_LOADER_URL_REPLACEMENT_0___});
   background-size: cover;
 }
-`, ""]);
+
+h1 {
+  color: white;
+}`, ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -672,6 +675,6 @@ __webpack_require__.r(__webpack_exports__);
 //--------------------
 
 
-document.write(_footer_html__WEBPACK_IMPORTED_MODULE_1__["default"]);
+document.body.innerHTML += _footer_html__WEBPACK_IMPORTED_MODULE_1__["default"];
 /******/ })()
 ;

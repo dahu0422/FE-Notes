@@ -8,3 +8,7 @@ body {
   background-image: url(background.png);
   background-size: cover;
 }
+
+h1 {
+  color: white;
+}

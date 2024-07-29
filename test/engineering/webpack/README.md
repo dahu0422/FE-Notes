@@ -305,3 +305,80 @@ module.exports = {
   },
 }
 ```
+
+
+## Plugin
+
+### clean-webpack-plugin 
+`clean-webpack-plugin` 的主要作用是在每次构建开始前清理输出目录，确保没有旧的构建文件残留，这对于避免文件冲突和确保构建的一致性非常重要。
+
+安装依赖 `npm install --save-dev clean-webpack-plugin`
+
+更新 `webpack-config.js` 配置文件
+
+```js
+...
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+module.exports = {
+  ...
+  plugins: [new CleanWebpackPlugin()],
+}
+```
+
+重新执行 `npx webpack --mode none` 原先 dist 目录下的文件已经被删除，生成了新的文件。
+
+### html-webpack-plugin
+`html-webpack-plugin` 是一个用于 HTML 文件的插件，它允许你使用简单的模板语法，生成带有自动插入的 webpack 构建文件的 HTML 文件。
+
+安装依赖 `npm install --save-dev html-webpack-plugin`
+
+更新 `webpack-config.js` 配置文件
+
+```js
+...
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+  ...
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html', // 模板文件
+    }),
+  ],
+}
+```
+
+重新执行 `npx webpack --mode none`，终端提示 index.html 文件生成成功。
+
+<img src="./assets/html-webpack-plugin 打包结果.png" />
+
+### copy-webpack-plugin
+`copy-webpack-plugin` 是一个用于复制文件到输出目录的插件。
+
+安装依赖 `npm install --save-dev copy-webpack-plugin`
+
+更新 `webpack-config.js` 配置文件
+
+```js
+...
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
+module.exports = {
+  ...
+  module: {
+  plugins: [
+    ...
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'public'), // 从根目录下的 public 文件夹
+          to: path.resolve(__dirname, 'dist'), // 到 dist 目录
+        },
+      ],
+    }),
+  ],
+}
+
+```
+
