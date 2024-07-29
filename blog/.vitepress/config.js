@@ -51,8 +51,8 @@ export default {
           { text: '浮动', link: '/interview/css/浮动.md' },
           { text: '属性的计算过程', link: '/interview/css/属性的计算过程.md' },
           {
-            text: 'CSS 层叠继承规则',
-            link: '/interview/css/CSS层叠继承规则.md',
+            text: '层叠样式继承规则',
+            link: '/interview/css/层叠样式继承规则.md',
           },
           { text: '层叠上下文', link: '/interview/css/层叠上下文.md' },
         ],
