@@ -187,6 +187,7 @@ module.exports = {
       ...,
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
+        type: 'asset/resource',
         // webpack5 内置了 asset module；webpack4.x 版本需要配置
         // use: [
         //   {
@@ -366,7 +367,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   ...
-  module: {
   plugins: [
     ...
     new CopyWebpackPlugin({
@@ -382,3 +382,147 @@ module.exports = {
 
 ```
 
+重新打包生成 dist 目录，public 目录下的文件被复制到 dist 目录下。
+
+终端提示：`asset favicon.ico 4.19 KiB [emitted] [from: public/favicon.ico] [copied]`：favicon.icon 文件已经从 public 目录下被复制到 dist 目录下。
+
+<img src="./assets/copy-webpack-plugin 打包结果.png" />
+
+## 开发体验
+每次更改完源代码都要重新打包，非常麻烦，需要优化开发体验。
+
+### watch 
+`watch` 配置项用于开启文件监听，当文件发生改变时，会自动重新编译。
+
+可以通过 CLI 命令 `npx webpack --watch` 开启监听，也可以在配置文件中添加 `watch: true` 配置项。
+
+```js
+module.exports = {
+  // ...
+  watch: true,
+  watchOptions: {
+    ignored: /node_modules/, // 忽略不需要监听的文件夹
+    aggregateTimeout: 300, // 文件变化的聚合时间
+    poll: 1000 // 检查文件变化的间隔时间，单位毫秒
+  }
+};
+```
+
+### webpack-dev-server
+`webpack-dev-server` 是一个基于 Node.js 的HTTP服务器。它提供了一下主要功能：
+
+1. 静态资源服务：`webpack-dev-server` 可以作为一个静态文件服务器，用于提供 HTML 文件和其他静态资源。它会监听指定的端口并根据 webpack 的配置来处理请求。可以通过 `contentBase` 配置项来指定静态资源的目录。
+2. 实时编译与热更新：当源代码发生更改时，`webpack-dev-server` 会触发 webpack 重新编译项目。这通常通过 watch 模式实现，它可以监听文件系统的变化。
+3. 代理请求：`webpack-dev-server` 可以代理请求，用于解决跨域问题。
+
+安装依赖 `npm install --save-dev webpack-dev-server`。启动服务 `npx webpack-dev-server` ，终端提示如图
+
+<img src="./assets/npx webpack-dev-server 执行结果.png" />
+
+意思是项目已经运行在本地地址 http://localhost:8080/ 上，IPv4 地址上是xxx，IPv6 地址上是xxx。`webpack-dev-server` 正在从指定的目录服务获取静态资源，而不是通过 webpack 构建的。
+
+此时 dist 目录下面是没有任何文件输出的。因为 `webpack-dev-server` 将构建结果保存在内存中，并通过 HTTP 服务器提供动态内容。这种机制允许它在代码更改时快速地重新编译，并利用热模块替换（Hot Module Replacement, HMR）来更新浏览器中的模块，而无需重新加载整个页面。
+
+#### 手动配置 webpack-dev-server 解决跨域问题
+参照 webpack4.x 教程配置是这样的
+```js
+...
+module.exports = {
+  ...
+  devServer: {
+    contentBase: './public', // 静态资源目录
+    port: 3000,
+    open: true,
+    proxy: {
+      '/api': {
+        // 匹配所有以 /api 开头的请求，http://localhost:3000/api/user => https://api.github.com/api/user
+        target: 'https://api.github.com', // 目标域名
+        secure: true, // 如果目标是 https 设置为 true
+        changeOrigin: true, // 如果目标域名与当前域名不同，设置为 true
+        pathRewrite: { '^/api': '' }, // 移除代理前缀，使请求到达目标服务器时没有 /api
+      },
+    },
+  },
+}
+
+```
+
+我使用的 webpack 和 webpack-cli 都是 5.x 版本，按照上面配置编译后控制台报错如下
+
+<img src="./assets/webpack-dev-server 配置项报错.png" />
+
+有两个问题：
+
+第一个是说配置相当中没有 `contentBase` 属性了，然后它列举了现在配置相当中合法的属性，这里要使用的是 `static` 属性；
+
+第二个是说 配置项 proxy 应该是个数组，数组里面可以存放对象或着方法。内部的写法也有些变化，所以按照 webpack5 的要求配置应该这样的：
+
+```js
+...
+module.exports = {
+  ...
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'),
+    }, // 静态资源目录
+    port: 3000,
+    open: true,
+    proxy: [
+      {
+        context: ['/api'],
+        // 匹配所有以 /api 开头的请求，http://localhost:3000/api/user => https://api.github.com/api/user
+        target: 'https://api.github.com', // 目标域名
+        secure: true, // 如果目标是 https 设置为 true
+        changeOrigin: true, // 如果目标域名与当前域名不同，设置为 true
+        pathRewrite: { '^/api': '' }, // 移除代理前缀，使请求到达目标服务器时没有 /api
+      },
+    ],
+  },
+}
+
+```
+
+### source-map
+Webpack 的 source map 功能主要用于在开发和调试过程中帮助开发者追踪原始源代码中的错误和警告，而不是在构建后的代码中查找。
+
+打开浏览器控制台，切换到 source 栏可以看到现在源代码指向的都是打包后的文件，这对于调试工作很不友好。
+
+<img src="./assets/source-map.png">
+
+利用 source map 可以解决这个问题，它是一种映射关系，将编译后的代码行和列映射回原始代码。当浏览器控制台报错或者警告时，会使用 source map 来定位到原始代码的位置。
+
+更新 `webpack-config.js` 配置项，添加 `devtool: 'source-map'`
+
+```js
+...
+module.exports = {
+  ...
+  devtool: 'source-map',
+  ...
+}
+```
+
+运行 `npx webpack-dev-server` 命令，在浏览器控制台查看报错信息，可以看到报错信息指向了原始源代码的位置。
+
+<img src="./assets/source-map 定位错误.png" />
+
+---
+
+Webpack 支持多种类型的 source map，[官方文档](https://www.webpackjs.com/configuration/devtool/#devtool)中详细介绍了他们之间在性能、是否可用于生产环境、质量和使用建议。
+
+- eval 类型：生成的 source map 会嵌入到每个模块的 eval 函数中，适用于快速开发和测试，但不适用于生产环境。
+- cheap 类型：不包括列映射或源映射，仅包括行映射，这使得构建更快，但可能无法精确到列。
+- module 类型：仅包括模块级别的映射，不包括外部资源如图片或字体文件。
+- nosources 类型：不包含源代码，仅包含映射信息，这可以防止源代码泄漏给客户端。
+
+推荐使用 `cheap-module-source-map` 类型，因为它在性能和调试方面都有很好的平衡。
+
+
+### HMR Module Replacement 热模块替换
+HMR 它能帮助在运行时不完全刷新页面的情况下更新所有类型的模块。`webpack-dev-server` 默认内置了 HMR 插件。
+
+为了测试 热替换 的特性，在页面中创建一个区域，可以输入内容。
+
+此时修改 .css 文件，页面不会刷新，但是样式会更新。修改 .js 文件，页面会刷新。
+
+如果想要 .js 文件不刷新，需要使用在相应的 .js 文件做些处理。但是这种手动处理很麻烦，建议采用一些集成的框架。
