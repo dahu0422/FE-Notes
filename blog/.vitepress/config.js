@@ -18,27 +18,13 @@ export default {
     sidebar: [
       {
         text: 'HTML',
-        link: '/interview/html/html5.md',
+        link: '/interview/html/html.md',
         items: [
-          { text: 'meta 标签', link: '/interview/html/01.meta标签.md' },
-          { text: 'script 标签', link: '/interview/html/02.script标签.md' },
-          { text: 'link 标签', link: '/interview/html/03.link标签.md' },
-          { text: 'img 标签', link: '/interview/html/04.img标签.md' },
-          { text: 'video 标签', link: '/interview/html/05.video标签.md' },
-          {
-            text: 'DOM 文档对象模型',
-            link: '/interview/html/DOM文档对象模型.md',
-          },
-          {
-            text: 'BOM 文档对象模型',
-            link: '/interview/html/BOM浏览器对象模型.md',
-          },
-          { text: '事件', link: '/interview/html/事件.md' },
-          { text: 'URL', link: '/interview/html/url.md' },
-          {
-            text: 'URLSearchParams',
-            link: '/interview/html/url-search-params.md',
-          },
+          { text: 'meta 标签', link: '/interview/html/meta标签.md' },
+          { text: 'script 标签', link: '/interview/html/script标签.md' },
+          { text: 'link 标签', link: '/interview/html/link标签.md' },
+          { text: 'img 标签', link: '/interview/html/img标签.md' },
+          { text: 'video 标签', link: '/interview/html/video标签.md' },
         ],
       },
       {
@@ -46,15 +32,13 @@ export default {
         link: '/interview/css/',
         items: [
           { text: 'CSS 单位', link: '/interview/css/CSS单位.md' },
-          { text: 'BFC', link: '/interview/css/BFC.md' },
-          { text: '定位', link: '/interview/css/定位.md' },
-          { text: '浮动', link: '/interview/css/浮动.md' },
-          { text: '属性的计算过程', link: '/interview/css/属性的计算过程.md' },
-          {
-            text: '层叠样式继承规则',
-            link: '/interview/css/层叠样式继承规则.md',
-          },
-          { text: '层叠上下文', link: '/interview/css/层叠上下文.md' },
+          { text: 'BFC 块级盒模型', link: '/interview/css/BFC.md' },
+          { text: 'position 定位', link: '/interview/css/position.md' },
+          { text: 'transition 过渡', link: '/interview/css/transition.md' },
+          { text: 'animation 动画', link: '/interview/css/animation.md' },
+          { text: 'transform 变形', link: '/interview/css/transform.md' },
+          { text: '属性计算过程', link: '/interview/css/属性计算过程.md' },
+          { text: '层叠继承规则', link: '/interview/css/层叠继承规则.md' },
         ],
       },
       {
