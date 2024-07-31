@@ -28,3 +28,6 @@ document.body.innerHTML += footerHtml
 // const img = new Image()
 // img.src = background
 // document.body.appendChild(img)
+
+// ------------- webpack.definePlugin ---------
+console.log(IS_DEV, process.env.NODE_ENV)
