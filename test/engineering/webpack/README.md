@@ -720,3 +720,55 @@ module.exports = {
 Webpack 的 splitChunks 选项允许将公共模块（例如 React、jQuery 等）提取到单独的 chunk 中，从而减少重复的代码。
 
 ### 按需加载
+
+在运行时加载代码，而不是在启动时加载所有代码，可以减少应用的初始加载时间。
+
+按需加载通过动态导入（dynamic import）实现。在需要时通过 import() 函数动态导入模块，而不是在入口文件中直接导入。
+
+```js
+// 当需要加载模块时调用
+import('./some-feature').then((module) => {
+  // 使用模块
+  module.default();
+});
+```
+
+### magin comments 魔法注释
+
+魔法注释是一种特殊的注释，用于向 Webpack 提供额外的元数据或指令，这些指令会影响 Webapck 的构建过程。
+
+```js
+// 当需要加载模块时调用
+import(  /* webpackChunkName: "my-feature" */'./some-feature').then((module) => {
+  // 使用模块
+  module.default();
+});
+```
+
+### Webapck.MiniCssExtractPlugin 提取 CSS
+
+将 CSS 文件从 JavaScript 中分离出来，生成单独的 CSS 文件。在生产环境中，可以使得 CSS 文件本浏览器缓存，而不受到 JavaScript 文件更改的影响。
+
+### OptimizeCssAssetsWebpackPlugin
+
+OptimizeCssAssetsWebpackPlugin 用于优化和压缩 CSS 资源。
+
+安装插件
+
+```bash
+npm install --save-dev optimize-css-assets-webpack-plugin
+```
+
+修改 webpack.config.js 文件
+
+```js
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+
+module.exports = {
+  //...
+  plugins: [
+    new OptimizeCssAssetsWebpackPlugin(),
+  ],
+  //...
+};
+```
