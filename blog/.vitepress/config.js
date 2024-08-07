@@ -54,6 +54,7 @@ export default {
           { text: '原型与原型链', link: '/interview/js/原型与原型链.md' },
           { text: '执行栈、执行上下文', link: '/interview/js/执行栈和执行上下文.md' },
           { text: '作用域、作用域链', link: '/interview/js/作用域和作用域链.md' },
+          { text: 'this 指向', link: '/interview/js/this指向.md' },
           { text: '闭包', link: '/interview/js/闭包.md' },
           {
             text: 'ES6',
