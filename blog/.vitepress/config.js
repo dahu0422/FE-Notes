@@ -51,73 +51,28 @@ export default {
         link: '/interview/js/',
         items: [
           { text: '数据类型', link: '/interview/js/01.数据类型.md' },
-          {
-            text: 'undefined VS null',
-            link: '/interview/js/02.undefined VS null.md',
-          },
+          { text: 'undefined VS null', link: '/interview/js/02.undefined VS null.md' },
           { text: '数据类型检测', link: '/interview/js/03.数据类型检测.md' },
-          {
-            text: 'new 操作符做了什么',
-            link: '/interview/js/04.new操作符做了什么.md',
-          },
-          {
-            text: 'call、apply、bind的区别',
-            link: '/interview/js/05.call、apply、bind的区别.md',
-          },
+          { text: 'new 操作符做了什么', link: '/interview/js/04.new操作符做了什么.md' },
+          { text: 'call、apply、bind的区别', link: '/interview/js/05.call、apply、bind的区别.md' },
           { text: '原型与原型链', link: '/interview/js/06.原型与原型链.md' },
           { text: '闭包', link: '/interview/js/07.闭包.md' },
           {
             text: 'ES6',
             link: '/interview/js/ES6.md',
             items: [
-              {
-                text: '箭头函数 VS 普通函数',
-                link: '/interview/js/es6/02.箭头函数 VS 普通函数.md',
-              },
-              {
-                text: 'let、const、var之间的区别',
-                link: '/interview/js/es6/03.let、const、var之间的区别.md',
-              },
+              { text: '箭头函数 VS 普通函数', link: '/interview/js/es6/02.箭头函数 VS 普通函数.md' },
+              { text: 'let、const、var之间的区别', link: '/interview/js/es6/03.let、const、var之间的区别.md' },
             ],
           },
           {
             text: '深入系列',
             items: [
-              {
-                text: '高阶函数',
-                link: '/interview/js/深入系列/01.高阶函数.md',
-              },
-              {
-                text: '事件循环',
-                link: '/interview/js/深入系列/02.事件循环.md',
-              },
-              {
-                text: '页面渲染',
-                link: '/interview/js/深入系列/03.页面渲染.md',
-              },
+              { text: '高阶函数', link: '/interview/js/深入系列/01.高阶函数.md' },
+              { text: '事件循环', link: '/interview/js/深入系列/02.事件循环.md' },
+              { text: '页面渲染', link: '/interview/js/深入系列/03.页面渲染.md' },
             ],
           },
-          // {
-          //   text: '执行上下文、作用域、作用域链',
-          //   link: '/interview/js/执行上下文、作用域和作用域链.md',
-          // },
-          // { text: '深拷贝', link: '/interview/js/深拷贝.md' },
-          // {
-          //   text: '异步函数',
-          //   items: [{ text: 'Promise', link: '/interview/js/Promise.md' }],
-          // },
-          // {
-          //   text: 'File API',
-          //   items: [
-          //     { text: 'File和Blob', link: '/interview/js/File和Blob.md' },
-          //   ],
-          // },
-          // { text: 'AJAX', link: '/interview/js/ajax.md' },
-          // { text: '面向对象', link: '/interview/js/object-orientation.md' },
-          // {
-          //   text: 'Web API',
-          //   items: [{ text: 'drag', link: '/interview/js/drag.md' }],
-          // },
         ],
       },
       {
@@ -127,22 +82,19 @@ export default {
           {
             text: 'vue',
             items: [
-              { text: '响应式原理', link: '/interview/vue/03.响应式原理' },
-              { text: '生命周期', link: '/interview/vue/02.生命周期.md' },
+              { text: '生命周期', link: '/interview/vue/生命周期.md' },
               { text: '组件通信方式', link: '/interview/vue/组件通信方式.md' },
+              { text: '双向绑定', link: '/interview/vue/双向绑定.md' },
+              { text: '响应式原理', link: '/interview/vue/响应式原理' },
+              { text: '虚拟DOM', link: '/interview/vue/虚拟DOM' },
             ],
           },
           {
             text: 'vue-router',
             items: [
-              {
-                text: '路由模式',
-                link: '/interview/vue/vue-router/01.路由模式.md',
-              },
-              {
-                text: '导航守卫',
-                link: '/interview/vue/vue-router/02.导航守卫.md',
-              },
+              { text: '路由模式', link: '/interview/vue/vue-router/路由模式.md' },
+              { text: '导航守卫', link: '/interview/vue/vue-router/导航守卫.md' },
+              { text: '动态路由', link: '/interview/vue/vue-router/动态路由.md' },
             ],
           },
         ],
