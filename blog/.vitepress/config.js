@@ -37,10 +37,7 @@ export default {
           { text: 'transition 过渡', link: '/interview/css/transition.md' },
           { text: 'animation 动画', link: '/interview/css/animation.md' },
           { text: 'transform 变形', link: '/interview/css/transform.md' },
-          {
-            text: 'media query 媒体查询',
-            link: '/interview/css/media-query.md',
-          },
+          { text: 'media query 媒体查询', link: '/interview/css/media-query.md' },
           { text: 'css单位', link: '/interview/css/css单位.md' },
           { text: '属性计算过程', link: '/interview/css/属性计算过程.md' },
           { text: '层叠继承规则', link: '/interview/css/层叠继承规则.md' },
@@ -50,13 +47,14 @@ export default {
         text: 'JS',
         link: '/interview/js/',
         items: [
-          { text: '数据类型', link: '/interview/js/01.数据类型.md' },
-          { text: 'undefined VS null', link: '/interview/js/02.undefined VS null.md' },
-          { text: '数据类型检测', link: '/interview/js/03.数据类型检测.md' },
-          { text: 'new 操作符做了什么', link: '/interview/js/04.new操作符做了什么.md' },
-          { text: 'call、apply、bind的区别', link: '/interview/js/05.call、apply、bind的区别.md' },
-          { text: '原型与原型链', link: '/interview/js/06.原型与原型链.md' },
-          { text: '闭包', link: '/interview/js/07.闭包.md' },
+          { text: '数据类型', link: '/interview/js/数据类型.md' },
+          { text: '数据类型检测', link: '/interview/js/数据类型检测.md' },
+          { text: 'new 操作符', link: '/interview/js/new操作符.md' },
+          { text: 'call、apply、bind的区别', link: '/interview/js/call、apply、bind的区别.md' },
+          { text: '原型与原型链', link: '/interview/js/原型与原型链.md' },
+          { text: '执行栈、执行上下文', link: '/interview/js/执行栈和执行上下文.md' },
+          { text: '作用域、作用域链', link: '/interview/js/作用域和作用域链.md' },
+          { text: '闭包', link: '/interview/js/闭包.md' },
           {
             text: 'ES6',
             link: '/interview/js/ES6.md',
@@ -87,6 +85,7 @@ export default {
               { text: '双向绑定', link: '/interview/vue/双向绑定.md' },
               { text: '响应式原理', link: '/interview/vue/响应式原理' },
               { text: '虚拟DOM', link: '/interview/vue/虚拟DOM' },
+              { text: '单向数据流', link: '/interview/vue/单向数据流' },
             ],
           },
           {
@@ -106,19 +105,13 @@ export default {
       {
         text: '网络',
         items: [
-          {
-            text: '网络分层模型',
-            link: '/interview/network/01.网络分层模型.md',
-          },
+          { text: '网络分层模型', link: '/interview/network/01.网络分层模型.md' },
           { text: 'HTTP协议', link: '/interview/network/02.HTTP协议.md' },
           { text: 'cookie', link: '/interview/network/03.cookie.md' },
           { text: 'storage', link: '/interview/network/04.storage.md' },
           { text: 'jwt', link: '/interview/network/05.jwt.md' },
           { text: '同源策略', link: '/interview/network/06.同源策略.md' },
-          {
-            text: 'HTTP缓存协议',
-            link: '/interview/network/07.HTTP缓存协议.md',
-          },
+          { text: 'HTTP缓存协议', link: '/interview/network/07.HTTP缓存协议.md' },
         ],
       },
       {

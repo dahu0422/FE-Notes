@@ -1,4 +1,5 @@
 # 函数式编程
+
 函数式编程（Functional Programming）是一种编程范式，把程序看作由一系列函数组成，根据输入通过某种运算获得相应的输出。
 
 ```javascript
@@ -14,9 +15,11 @@ function add(n1, n2) {
 }
 console.log(add(2, 3))
 ```
-   
+
 ## 函数是一等公民
+
 在函数式编程中，函数是一等公民，意味着函数可以：
+
 - 存储在变量中
 - 作为参数传递
 - 作为返回值
@@ -49,9 +52,11 @@ BigController.create(attrs)
 ```
 
 ## 高阶函数 Higher-order function
+
 满足函数作为**参数传递**，或者作为**返回值**，任意一种都属于高阶函数。
 
 ### 函数作为参数传递
+
 ```javascript
 // 模拟 Array.forEach 方法
 function myForEach(arr, fn) {
@@ -78,6 +83,7 @@ console.log(tempArr) // [12]
 ```
 
 ### 函数作为返回值
+
 ```javascript
 // 简单示例
 function makeFn() {
@@ -110,7 +116,9 @@ console.log(result1, result2, result3) // 支付了10元 undefined undefined
 高阶函数的意义：**运算的缺失和延续**
 
 ## 闭包 Closure
+
 闭包：函数和其周围的状态（词法环境）的引用捆绑在一起形成闭包。通俗的说：**一个函数有权访问另一个函数作用域中的变量**，即使在外部函数已经执行结束。
+
 ```js
 /**
  * 返回次幂的函数
@@ -126,15 +134,17 @@ function createPow(power) {
 const power2 = createPow(2) // 求平方
 console.log(power2(4), power2(5))
 ```
+
 nodejs断点调试
 
 <img src="./closure-debugger.png" />
 
-
 闭包的本质：函数在执行的时候会被放到一个执行栈中，当函数执行完毕之后，会从栈中移除。但是**堆上的作用域的成员因为被外部引用不能释放**，所以内部函数依然可以访问外部函数的成员。
 
 ## 纯函数
-纯函数：相同的输入始终返回相同的输出值，而且没有任何可观察的**副作用**。 
+
+纯函数：相同的输入始终返回相同的输出值，而且没有任何可观察的**副作用**。
+
 ```js
 const arr = [1, 2, 3, 4, 5]
 
@@ -150,6 +160,7 @@ console.log(b1, b2); // [1] [2]
 ```
 
 使用 lodash 中 `memoize()`方法：缓存函数的返回值，下次调用时直接返回缓存值。模拟实现 myMemoize()
+
 ```js
 /**
  * 模拟实现 memoize() 方法
@@ -186,12 +197,15 @@ function checkAge(age) {
   if(age < mini) return false
 }
 ```
+
 `checkAge()`函数依赖 `mini`变量，调用时如果`mini`变量被修改，`checkAge()`函数的输出也会改变。所以说 `checkAge()`函数是**不纯**的。
 
 ## 柯里化
+
 柯里化：把接受多个参数的函数变换成接受一个单一参数的函数，并且返回接受余下参数且返回结果的新函数。
 
 优化上面 `checkAge()`函数：
+
 ```js
 /**
  * 柯里化
@@ -213,6 +227,7 @@ checkAge18(20) // true
 ```
 
 使用 lodash 提供的`curry()`方法生成了两个新的函数 haveSpace 和 findSpace，优势在于可复用性高，可以连续调用。
+
 ```js
 const _ = require('lodash')
 const curryMatch = _.curry((reg, str) => str.match(reg))
@@ -224,8 +239,8 @@ console.log(findSpace(['John Connor', 'John_Donne']))
 
 <!-- TODO:模拟 myCurry 方法 -->
 
-
 ## 函数组合 Function Composition
+
 函数组合是把多个函数组合起来，通过调用一个函数，实现多个函数的调用。这个新的函数依次调用原来的函数并将前一个函数的结果作为参数传递给下一个函数。
 
 ```js
@@ -243,6 +258,7 @@ const last = compose(first, reverse)
 ```
 
 使用 lodash 提供的 `flowRight()`方法实现函数组合。
+
 ```js
 const _ = require('lodash')
 const reverse = array => array.reverse();
@@ -255,6 +271,7 @@ console.log(res) // C
 ```
 
 模拟 `myFlowRight()` 方法
+
 ```js
 function myFlowRight(...fns) {
   return function(value) {
@@ -264,6 +281,7 @@ function myFlowRight(...fns) {
 ```
 
 函数组合满足结合律
+
 ```js
 require('lodash')
 _.flowRight(_toUpper, _first, _reverse) === 
