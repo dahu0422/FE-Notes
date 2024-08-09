@@ -49,6 +49,7 @@ export default {
         items: [
           { text: '数据类型', link: '/interview/js/数据类型.md' },
           { text: '数据类型检测', link: '/interview/js/数据类型检测.md' },
+          { text: '数据类型转换', link: '/interview/js/数据类型转换.md' },
           { text: 'new 操作符', link: '/interview/js/new操作符.md' },
           { text: 'call、apply、bind的区别', link: '/interview/js/call、apply、bind的区别.md' },
           { text: '原型、原型链', link: '/interview/js/原型与原型链.md' },
@@ -56,6 +57,9 @@ export default {
           { text: '作用域、作用域链', link: '/interview/js/作用域与作用域链.md' },
           { text: 'this 指向', link: '/interview/js/this指向.md' },
           { text: '闭包', link: '/interview/js/闭包.md' },
+          { text: 'DOM 文档对象模型', link: '/interview/js/DOM文档对象模型.md' },
+          { text: 'DOM 事件注册和移除', link: '/interview/js/DOM事件注册和移除.md' },
+          { text: 'DOM 事件传播机制', link: '/interview/js/DOM事件传播机制.md' },
           {
             text: 'ES6',
             link: '/interview/js/ES6.md',
@@ -76,7 +80,7 @@ export default {
       },
       {
         text: 'Vue系列',
-        link: '/interview/vue/01.mvvm设计模式与vue框架.md',
+        link: '/interview/vue/vue3新特性',
         items: [
           {
             text: 'vue',

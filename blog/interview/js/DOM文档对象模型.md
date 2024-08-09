@@ -1,12 +1,15 @@
 # DOM 文档对象模型
+
 文档对象模型（DOM，Document Object Model）是HTML文档的编程接口。DOM表示由多层节点构成的文档，通过它可以添加、删除和修改页面的各个部分。
 
 任何HTML文档都可以用DOM表示为一个由**节点**构成的层级结构，DOM中总共有12种节点类型。
 
 ## Node 类型
+
 在 JavaScript中，所有节点都继承 Node 类型。
 
 属性：
+
 - nodeType：返回节点类型。
   - Node.ELEMENT_NODE = 1; 元素节点
   - Node.TEXT_NODE = 3; 文本节点
@@ -17,6 +20,7 @@
 - nodeValue：返回节点的值。
 
 **节点关系**属性：
+
 - childNodes：返回 NodeList 对象，包含当前节点的所有子节点。
 - parentNode：返回当前节点的父节点。
 - firstChild：返回当前节点的第一个子节点。
@@ -27,6 +31,7 @@
 <img src="../../public/节点关系.png">
 
 常用实例方法
+
 - `Node.appendChild()` 方法用于将一个节点**添加**到当前节点的子节点列表**末尾**。
 - `Node.insertBefore()` 方法用于将一个节点**插入**到当前节点的子节点列表中**指定位置**。
 - `Node.removeChild()` 方法用于从当前节点的子节点列表中**移除**一个节点。
@@ -80,12 +85,15 @@ let hasChildNodes = someNode.hasChildNodes();
 ```
 
 ## Docuemnt 类型
+
 Document 对象表示整个HTML文档，有以下特征：
+
 - nodeType 等于 9；
 - nodeName 等于 "#document"；
 - nodeValue 等于 null；
 
 常用属性：
+
 - documentElement：返回文档的根元素。
 - body：返回文档的 body 元素。
 - head：返回文档的 head 元素。
@@ -96,6 +104,7 @@ Document 对象表示整个HTML文档，有以下特征：
 - cookie：返回文档的 cookie。
 
 常用实例方法：
+
 - `Document.getElementById()` 方法用于获取**指定 id 的元素**。
 - `Document.getElementsByTagName()` 方法用于获取指定**标签名的元素**。
 - `Document.getElementsByClassName()` 方法用于获取指定**类名的元素**。
@@ -156,12 +165,15 @@ const element = document.createElement('div');
 ```
 
 ## Element 类型
+
 Element 对象表示一个 HTML 元素，有以下特征：
+
 - nodeType 等于 1；
 - nodeName 等于元素的标签名；
 - nodeValue 等于 null；
 
 常用属性：
+
 - `attributes`：返回一个 NamedNodeMap 对象，包含当前元素的属性集合。
 - `classList`：返回一个 DOMTokenList 对象，包含当前元素的类名集合。
 - `className`：返回当前元素的类名。
@@ -170,10 +182,12 @@ Element 对象表示一个 HTML 元素，有以下特征：
 - `tagName`：返回当前元素的标签名。
 
 布局属性：
+
 - `clientWidth`：返回当前元素的宽度。
 - `clientHeight`：返回当前元素的高度。
 
 常用与属性相关的实例方法：
+
 - `Element.getAttribute()` 方法用于**获取**指定**属性的值**。
 - `Element.setAttribute()` 方法用于**设置**指定**属性的值**。
 - `Element.removeAttribute()` 方法用于**移除**指定**属性**。
@@ -211,6 +225,7 @@ const bol = element.hasAttribute(attributeName);
 ```
 
 常用与滚动相关的实例方法：
+
 - `Element.scrollTo()`：用于滚动到指定位置。
 - `Element.scrollBy()`：相对于当前位置滚动指定距离。
 - `Element.scrollIntoView()`：滚动包含给定元素的祖先元素，直到这个元素完全可见。
@@ -239,7 +254,9 @@ element.scrollIntoView(option);
 ```
 
 位置相关实例方法
+
 - `Element.getBoundingClientRect()`：返回元素的大小及其相对于视口的位置。
+
 ```javascript
 /**
  * 获取元素位置
