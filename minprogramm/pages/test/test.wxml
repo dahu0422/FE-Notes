@@ -1,0 +1,20 @@
+<!--pages/user/user.wxml-->
+<text bindtap="goIndex">跳转到 Index </text>
+
+<map longitude="{{ longitude }}" latitude="{{ latitude }}" markers="{{ markers }}" scale="14" style="width: 100%; height:300px"></map>
+
+<view class="weui-panel__bd">
+  <navigator wx:for="{{ sevenDayWeathers }}" wx:key="fxDate" aria-labelledby="js_p1m1_bd" class="weui-media-box weui-media-box_appmsg" url="javascript:">
+    <view aria-hidden="true" class="weui-media-box__hd">
+      <image class="weui-media-box__thumb" src="" alt="img"></image>
+    </view>
+    <view aria-hidden="true" id="js_p1m1_bd" class="weui-media-box__bd">
+      <text class="weui-media-box__title">{{item.fxDate}}</text>
+      <view class="weui-media-box__desc">温度：{{ item.tempMax }} ~ {{ item.tempMin }} 度</view>
+    </view>
+  </navigator>
+</view>
+
+<!-- 页脚 -->
+<import src="../../tpl/footer.wxml" />
+<template is="footer" />

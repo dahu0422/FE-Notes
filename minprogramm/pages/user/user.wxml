@@ -1,2 +1,0 @@
-<!--pages/user/user.wxml-->
-<text bindtap="goIndex">跳转到 Index </text>

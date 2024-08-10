@@ -129,5 +129,147 @@ wxml（WeiXin Markup Language）是框架设计的一套标签语言，结合基
 2. 条件渲染：结合 `wx:if`、`wx:elif`、`wx:else` 等条件渲染指令，`<block>` 可以实现复杂的条件判断逻辑。
 3. 列表渲染：通过 `wx:for` 指令，`<block>` 包裹一个列表项，并对列表中的每一项进行渲染。
 
+## 接口调用
 
+练习：调用 [`wx.getLocation`](https://developers.weixin.qq.com/miniprogram/dev/api/location/wx.getLocation.html) 获取用户地理信息，调用第三方平台 API 查询当日天气。
+
+`wx.getLocation` 获取当前的地理位置、速度。需要用户授权，用户离开小程序时此接口无法调用。
+
+调用 `wx.getLocation` 需要提前在 `app.json` 中配置
+
+```json
+{
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+}
+```
+
+[具体配置规则](https://developers.weixin.qq.com/community/develop/doc/000a02f2c5026891650e7f40351c01)
+
+配置后会查询用户地理信息，此时会弹出对话框，意思是涉及到了用户权限，要配置一个询问信息为什么要用户地理信息。
+
+在 `app.json` 添加
+
+```json
+{
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示" // 高速公路行驶持续后台定位
+    }
+  }
+}
+```
+
+之后调用第三方平台开放 API，调用前先封装一下请求方法
+
+```js
+const BASE_URL = '...'
+const KEY = '...'
+
+const request = (url, method, data) => {
+  data.key = KEY
+  return new Promise((reslove, reject) => {
+    url,
+    method,
+    data,
+    success(res) {
+      resolve(res)
+    }
+    reject(err) {
+      reject(err)
+    }
+  }) 
+}
+
+module.exports = {
+  'nowWeather' = (data) => {
+    return request('xxx', data, 'get)
+  }
+}
+```
+
+简单创建一个 API.js 封装一下 `wx.request`，然后导出接口.在 xxx.js 逻辑层就可以直接调用
+
+```js
+const API = require('../../util.js')
+
+onLoad() {
+  wx.getLocation({
+    type: 'wgs84',
+    success(res) {
+      const {latitude, longitude} = res
+      API.nowWeather({ location: `${longitude},${latitude}` }).then(res => {
+        console.log(res)
+      })
+    }
+  })
+}
+
+```
+
+这样就完成了一个简单的demo，通过微信云接口 `wx.getLocation` 获取用户地理信息的经纬度，然后调用第三方平台开放接口查询该用户当前天气。
+
+## 地图展示
+
+接着上边的案例去实现，通过 [`<map>`](https://developers.weixin.qq.com/miniprogram/dev/component/map.html) 展示经纬度信息
+
+```wxml
+<map
+  longitude="{{ longitude }}"
+  latitude="{{ latitude }}"
+  markers="{{ markers }}"
+  scale="14"
+  style="width: 100%; height:300px"
+></map>
+```
+
+创建响应式数据 `longitude`、`latitude`、`markers`，查询到用户地理信息后通过`this.setData` 更新数据，并绘制标记点。
+
+```js
+wx.getLocation({
+  ...
+  success(res) {
+    that.setData({
+      latitude: res.latitude,
+      longitude: res.longitude,
+      markers: [{
+        id: "0",
+        latitude: res.latitude,
+        longitude: res.longitude,
+        iconPath: '/static/images/location.png',
+        width: 40,
+        height: 40
+      }]
+    })
+  }
+  ...
+})
+```
+
+## 引入 WeUI 样式
+
+在 github 上下载压缩包，解压后将dist文件夹下的style文件复制到项目根目录，在 `app.wxss` 下导入该文件。
+
+另起一个项目打开 dist 压缩包查看 WeUI 提供样式，它就相当于是 bootstrap。
+
+## 模板语法 `<template>`
+WXML提供模板（template），可以在模板中定义代码片段，然后在不同的地方调用。
+
+定义一个模板
+
+```wxml
+<template name="footer">
+  <view>
+    <text> {{index}}: {{msg}} </text>
+    <text> Time: {{time}} </text>
+  </view>
+</template>
+```
+
+在文件中导入并调用
+```wxml
+<import src="../../tpl/footer.wxml" />
+<template is="footer" data="{{...item}}"/>
+```
 

@@ -3,7 +3,7 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/user/user"
+    "pages/test/test"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -22,11 +22,19 @@
       "selectedIconPath": "static/images/search-actived.png",
       "text": "日志"
     }, {
-      "pagePath": "pages/user/user",
+      "pagePath": "pages/test/test",
       "iconPath": "static/images/profile.png",
       "selectedIconPath": "static/images/profile-actived.png",
-      "text": "用户"
+      "text": "test"
     }]
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示" 
+    }
   },
   "style": "v2",
   "componentFramework": "glass-easel",
