@@ -1,4 +1,4 @@
-# [Vue3 中值得关注的新特性](https://v3-migration.vuejs.org/#notable-new-features)
+# [Vue3 中值得关注的新特性](https://v3-migration.vuejs.org/zh/)
 
 ## Composition API
 
@@ -159,6 +159,3 @@ const emit = defineEmits(['change', 'delete'])
 </script>
 ```
 
-### defineModel
-
-...
