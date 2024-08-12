@@ -272,4 +272,7 @@ WXML提供模板（template），可以在模板中定义代码片段，然后�
 <import src="../../tpl/footer.wxml" />
 <template is="footer" data="{{...item}}"/>
 ```
+## camera 媒体组件
+调用系统相机，通过 `wx.createCameraContext()` 创建 camera 上下文对象 [CameraContext](https://developers.weixin.qq.com/miniprogram/dev/api/media/camera/CameraContext.html)
+
 

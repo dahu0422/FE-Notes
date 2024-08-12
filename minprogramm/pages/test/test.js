@@ -106,5 +106,11 @@ Page({
     wx.reLaunch({
       url: '/pages/index/index',
     })
+  },
+
+  goCamera() {
+    wx.navigateTo({
+      url: '/pages/camera/camera',
+    })
   }
 })

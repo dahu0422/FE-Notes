@@ -1,6 +1,7 @@
 <!--pages/user/user.wxml-->
 <text bindtap="goIndex">跳转到 Index </text>
 
+<text bindtap="goCamera">跳转到照相功能</text>
 <map longitude="{{ longitude }}" latitude="{{ latitude }}" markers="{{ markers }}" scale="14" style="width: 100%; height:300px"></map>
 
 <view class="weui-panel__bd">
