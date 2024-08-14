@@ -1,68 +1,10 @@
-# 同源策略
+# 跨域-CORS
 
-## 概述
-浏览器有一个重要的安全策略，称之为「同源策略」
-
-其中，$源=协议+主机+端口$，两个源相同，称之为同源，两个源不同，称之为跨源或跨域
-
-比如：
-
-| 源 1                  | 源 2                      | 是否同源 |
-| --------------------- | ------------------------- | -------- |
-| http://www.baidu.com  | http://www.baidu.com/news | ✅        |
-| https://www.baidu.com | http://www.baidu.com      | ❌        |
-| http://localhost:5000 | http://localhost:7000     | ❌        |
-| http://localhost:5000 | http://127.0.0.1:5000     | ❌        |
-| http://www.baidu.com  | http://baidu.com          | ❌        |
-|                       |                           |          |
-
-**同源策略是指，若页面的源和页面运行过程中加载的源不一致时，出于安全考虑，浏览器会对跨域的资源访问进行一些限制**
-
-<img src="../../public/网络/同源策略_01.png" />
-
-同源策略对 ajax 的跨域限制的最为*凶狠*，默认情况下，它不允许 ajax 访问跨域资源
-
-<img src="../../public/网络/同源策略_02.png" />
-
-所以，我们通常所说的跨域问题，就是同源策略对 ajax 产生的影响
-
-有多种方式解决跨域问题，常见的有：
-
-- **代理**，常用
-- **CORS**，常用
-- JSONP
-
-无论使用哪一种方式，都是要让浏览器知道，我这次跨域请求的是自己人，就不要拦截了。
-
-## 代理
-**对于前端开发而言**，大部分的跨域问题，都是通过**代理**解决的
-
-**代理适用的场景是：生产环境不发生跨域，但开发环境发生跨域**。因此，只需要在开发环境使用代理解决跨域即可，这种代理又称之为开发代理
-
-![image-20210916125008693](http://mdrs.yuanjin.tech/img/20210916125008.png)
-
-在实际开发中，只需要对开发服务器稍加配置即可完成
-
-```js
-// vue 的开发服务器代理配置
-// vue.config.js
-module.exports = {
-  devServer: { // 配置开发服务器
-    proxy: { // 配置代理
-      "/api": { // 若请求路径以 /api 开头
-        target: "http://dev.taobao.com", // 将其转发到 http://dev.taobao.com
-      },
-    },
-  },
-};
-```
-
-## CORS
 `CORS` 是基于 `http1.1` 的一种跨域解决方案，它的全称是**C**ross-**O**rigin **R**esource **S**haring，跨域资源共享。
 
 它的总体思路是：**如果浏览器要跨域访问服务器的资源，需要获得服务器的允许**
 
-<img src="../../public/网络/同源策略_03.png" />
+![image-20200421152122793](http://mdrs.yuanjin.tech/img/image-20200421152122793.png)
 
 而要知道，一个请求可以附带很多信息，从而会对服务器造成不同程度的影响。比如有的请求只是获取一些新闻，有的请求会改动服务器的数据。
 
@@ -72,12 +14,18 @@ module.exports = {
 - **需要预检的请求**
 - **附带身份凭证的请求**
 
-这三种模式从上到下层层递进，请求可以做的事越来越多，要求也越来越严格。下面分别说明三种请求模式的具体规范。
+这三种模式从上到下层层递进，请求可以做的事越来越多，要求也越来越严格。
 
-###  简单请求
+下面分别说明三种请求模式的具体规范。
+
+## 简单请求
+
 当浏览器端运行了一段 ajax 代码（无论是使用 XMLHttpRequest 还是 fetch api），浏览器会首先判断它属于哪一种请求模式
 
-#### 简单请求的判定
+### 简单请求的判定
+
+当请求**同时满足**以下条件时，浏览器会认为它是一个简单请求：
+
 1. **请求方法属于下面的一种：**
    - get
    - post
@@ -92,55 +40,56 @@ module.exports = {
    - `Save-Data`
    - `Viewport-Width`
    - `Width`
-   
 3. **请求头如果包含`Content-Type`，仅限下面的值之一：**
    - `text/plain`
    - `multipart/form-data`
    - `application/x-www-form-urlencoded`
 
-如果以上三个条件同时满足，浏览器判定为简单请求。下面是一些例子：
+如果以上三个条件同时满足，浏览器判定为简单请求。
+
+下面是一些例子：
 
 ```js
 // 简单请求
-fetch('http://crossdomain.com/api/news');
+fetch("http://crossdomain.com/api/news");
 
 // 请求方法不满足要求，不是简单请求
-fetch('http://crossdomain.com/api/news', {
-  method: 'PUT',
+fetch("http://crossdomain.com/api/news", {
+  method: "PUT",
 });
 
 // 加入了额外的请求头，不是简单请求
-fetch('http://crossdomain.com/api/news', {
+fetch("http://crossdomain.com/api/news", {
   headers: {
     a: 1,
   },
 });
 
 // 简单请求
-fetch('http://crossdomain.com/api/news', {
-  method: 'post',
+fetch("http://crossdomain.com/api/news", {
+  method: "post",
 });
 
 // content-type不满足要求，不是简单请求
-fetch('http://crossdomain.com/api/news', {
-  method: 'post',
+fetch("http://crossdomain.com/api/news", {
+  method: "post",
   headers: {
-    'content-type': 'application/json',
+    "content-type": "application/json",
   },
 });
 ```
---- 
-#### 简单请求的交互规范
+
+### 简单请求的交互规范
 
 当浏览器判定某个**ajax 跨域请求**是**简单请求**时，会发生以下的事情
 
 1. **请求头中会自动添加`Origin`字段**
 
-比如，在页面 `http://my.com/index.html` 中有以下代码造成了跨域
+比如，在页面`http://my.com/index.html`中有以下代码造成了跨域
 
 ```js
 // 简单请求
-fetch('http://crossdomain.com/api/news');
+fetch("http://crossdomain.com/api/news");
 ```
 
 请求发出后，请求头会是下面的格式：
@@ -154,11 +103,13 @@ Referer: http://my.com/index.html
 Origin: http://my.com
 ```
 
-最后一行 `Origin` 字段会告诉服务器，是哪个源地址在跨域请求
+看到最后一行没，`Origin`字段会告诉服务器，是哪个源地址在跨域请求
 
 2. **服务器响应头中应包含`Access-Control-Allow-Origin`**
 
-当服务器收到请求后，如果允许该请求跨域访问，需要在响应头中添加`Access-Control-Allow-Origin`字段。该字段的值可以是：
+当服务器收到请求后，如果允许该请求跨域访问，需要在响应头中添加`Access-Control-Allow-Origin`字段
+
+该字段的值可以是：
 
 - \*：表示我很开放，什么人我都允许访问
 - 具体的源：比如`http://my.com`，表示我就允许你访问
@@ -181,17 +132,15 @@ Access-Control-Allow-Origin: http://my.com
 消息体中的数据
 ```
 
-当浏览器看到服务器允许自己访问后，高兴的像一个两百斤的孩子，于是，它就把响应顺利的交给 js，以完成后续的操作。
+当浏览器看到服务器允许自己访问后，高兴的像一个两百斤的孩子，于是，它就把响应顺利的交给 js，以完成后续的操作
 
 下图简述了整个交互过程
 
-<img src="../../public/网络/同源策略_04.png" />
+![image-20200421162846480](http://mdrs.yuanjin.tech/img/image-20200421162846480.png)
 
-### 需要预检的请求
+## 需要预检的请求
 
-简单的请求对服务器的威胁不大，所以允许使用上述的简单交互即可完成。
-
-但是，如果浏览器不认为这是一种简单请求，就会按照下面的流程进行：
+简单的请求对服务器的威胁不大，所以允许使用上述的简单交互即可完成。但是，如果浏览器不认为这是一种简单请求，就会按照下面的流程进行：
 
 1. **浏览器发送预检请求，询问服务器是否允许**
 2. **服务器允许**
@@ -202,15 +151,15 @@ Access-Control-Allow-Origin: http://my.com
 
 ```js
 // 需要预检的请求
-fetch('http://crossdomain.com/api/user', {
-  method: 'POST', // post 请求
+fetch("http://crossdomain.com/api/user", {
+  method: "POST", // post 请求
   headers: {
     // 设置请求头
     a: 1,
     b: 2,
-    'content-type': 'application/json',
+    "content-type": "application/json",
   },
-  body: JSON.stringify({ name: '袁小进', age: 18 }), // 设置请求体
+  body: JSON.stringify({ name: "袁小进", age: 18 }), // 设置请求体
 });
 ```
 
@@ -295,9 +244,9 @@ Access-Control-Allow-Origin: http://my.com
 
 下图简述了整个交互过程
 
-<img src="../../public/网络/同源策略_05.png" />
+![image-20200421165913320](http://mdrs.yuanjin.tech/img/image-20200421165913320.png)
 
-### 附带身份凭证的请求
+## 附带身份凭证的请求
 
 默认情况下，ajax 的跨域请求并不会附带 cookie，这样一来，某些需要权限的操作就无法进行
 
@@ -310,7 +259,7 @@ xhr.withCredentials = true;
 
 // fetch api
 fetch(url, {
-  credentials: 'include',
+  credentials: "include",
 });
 ```
 
@@ -326,7 +275,7 @@ fetch(url, {
 
 另外要特别注意的是：**对于附带身份凭证的请求，服务器不得设置 `Access-Control-Allow-Origin 的值为*`**。这就是为什么不推荐使用\*的原因
 
-### 一个额外的补充
+## 一个额外的补充
 
 在跨域访问时，JS 只能拿到一些最基本的响应头，如：Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma，如果要访问其他头，则需要服务器设置本响应头。
 
@@ -337,4 +286,3 @@ Access-Control-Expose-Headers: authorization, a, b
 ```
 
 这样 JS 就能够访问指定的响应头了。
-
