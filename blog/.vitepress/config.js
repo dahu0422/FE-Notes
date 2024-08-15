@@ -160,7 +160,7 @@ export default {
             link: "/interview/network/01.网络分层模型.md",
           },
           { text: "HTTP协议", link: "/interview/network/02.HTTP协议.md" },
-          { text: "cookie", link: "/interview/network/03.cookie.md" },
+          { text: "cookie", link: "/interview/network/cookie.md" },
           { text: "storage", link: "/interview/network/04.storage.md" },
           { text: "jwt", link: "/interview/network/05.jwt.md" },
           { text: "同源策略", link: "/interview/network/同源策略.md" },
@@ -171,6 +171,7 @@ export default {
             text: "HTTP缓存协议",
             link: "/interview/network/07.HTTP缓存协议.md",
           },
+          { text: "websocket", link: "/interview/network/websocket.md" },
         ],
       },
       {

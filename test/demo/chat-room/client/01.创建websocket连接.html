@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>创建websocket连接</title>
+  </head>
+  <body></body>
+
+  <script>
+    const ws = new WebSocket("ws://localhost:8080");
+
+    ws.onopen = function () {
+      console.log("Connected to Server");
+      ws.send("Hello Server!");
+    };
+
+    // 发送消息
+    ws.onmessage = function (event) {
+      console.log(`Server says: ${event.data}`);
+    };
+
+    // ws.onclose = function () {
+    //   console.log("Disconnected from Server");
+    // };
+  </script>
+</html>

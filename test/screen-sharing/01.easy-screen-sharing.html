@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>屏幕共享</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      #container {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+      }
+
+      video {
+        display: none;
+        flex: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <div>
+        <button>屏幕共享</button>
+      </div>
+      <video id="screenVideo" autoplay></video>
+    </div>
+  </body>
+
+  <script>
+    const btn = document.querySelector("button");
+    const video = document.querySelector("#screenVideo");
+
+    btn.addEventListener("click", async () => {
+      const stream = await getScreenStream();
+      if (stream) {
+        stopScreenStream(stream);
+        video.style.display = "block";
+        video.srcObject = stream;
+      }
+    });
+
+    async function getScreenStream() {
+      try {
+        return await navigator.mediaDevices.getDisplayMedia({
+          video: true,
+          audio: false,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    function stopScreenStream(stream) {
+      if (stream) {
+        stream.getTracks().forEach((track) => {
+          track.addEventListener("ended", () => {
+            video.style.display = "none";
+          });
+        });
+      }
+    }
+  </script>
+</html>
