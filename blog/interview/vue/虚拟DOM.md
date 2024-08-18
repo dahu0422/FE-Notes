@@ -1,45 +1,158 @@
 # 虚拟 DOM
 
-1. vdom 是什么
-2. 引入 vdom 的好处
-3. vdom 如何生成，又如何成为 dom
-4. 后续的 diff的作用
+虚拟 DOM 是将目标元素通过数据结构“虚拟”地表示出来，保存在内存中，然后将真实的 DOM 与之保持同步。
 
-虚拟 DOM 是一种对实际 DOM 的抽象表示，是一个 JavaScript 对象，通过不同的属性描述了视图结构。
+```js
+const vnode = {
+  type: 'div',
+  props: { id: 'hello' },
+  children: [ ... ]
+}
+```
 
-## 虚拟 DOM 优势
+这个 `vnode` 是一个纯 Javascript 的对象，代表一个 `<div>` 元素。包含了创建实际元素所需要的所有信息，以及子节点。
 
-### 将真实元素节点抽象成VNode，有效减少直接操作 dom 次数，从而提高程序性能
+## 渲染管线
 
-直接操作 dom 是有限制的，比如：diff、clone 等操作，一个真是元素上有许多的内容，如果直接对其进行 diff 操作，会去额外 diff 一些没有必要的内容。同样，如果需要进行 clone 那么需要将其全部内容进行复制，这也是没有必要的。
+Vue 组件挂载要经过：编译、挂载、更新
 
-将这些操作转移到 JavaScript 对象中，就会变得简单。
+![render-pipeline](https://cn.vuejs.org/assets/render-pipeline.CwxnH_lZ.png)
 
-操作 dom 是比较昂贵的操作，频繁的 dom 操作容易引起页面的重绘制和回流，通过抽象 VNode 进行中间处理，可以有效减少直接 dom 操作，从而减少页面绘制和回流。
+### 编译
 
-### 方便实现跨平台
+在 Vue3 中， `complier-core` 负责核心编译相关能力，包括解析模板(parse)、转化 AST 抽象语法树(transform)、生成渲染函数(generate)三个过程。
 
-同一 VNode 节点可以渲染成不同平台上队因的内容。比如：渲染在浏览器是 dom 元素节点，渲染在 Native（iOS、Android）变为对应的控件、可以实现 SSR、渲染到 WebGL 中等等。
+`compiler-core` [部分源码](https://github.com/vuejs/core/blob/main/packages/compiler-core/src/compile.ts#L65)
 
-Vue3 中允许开发者基于 VNode 实现自定义的渲染器，从而实现跨平台。
+```js
+export function baseCompile(
+  source: string | RootNode,
+  options: CompilerOptions = {}
+): CodegenResult {
+  ...
+  const ast = isString(source) ? baseParse(source, resolvedOptions) : source;
+  ...
+  transform(
+    ast,
+    extend({}, resolvedOptions, {
+      nodeTransforms: [
+        ...nodeTransforms,
+        ...(options.nodeTransforms || []), // user transforms
+      ],
+      directiveTransforms: extend(
+        {},
+        directiveTransforms,
+        options.directiveTransforms || {} // user transforms
+      ),
+    })
+  );
 
-## 虚拟 DOM 生成
+  return generate(ast, resolvedOptions);
+}
+```
 
-### 渲染过程
+#### 解析模板，生成 AST --- baseParse
 
-在组件初始化是 vue 会调用 compile 方法编译模板，将模板转化为 `render` 函数。在挂在 mount 阶段，会调用 `render` 函数，返回的对象就是虚拟 dom，在后续的 patch 过程中进一步转化为 dom。
+当组件实例初始化时，会将模板传入 Vue 编译器进行编译。在这个过程中会将模板字符解析成一个**抽象语法树（Abstract Syntax Tree）**。
 
-![VNode生成过程](../../public/vue/vdom生成过程.png)
+Vue 引用了 `htmlparser2` 的第三方库来解析模板，在源码中被定义为 `Tokenizer`。它将模板中的**指令**和**属性**转换为对应的 AST 节点。
 
-挂载过程结束后，vue程序进入更新流程。如果某些响应式数据发生变化，将会引起组件重新render，此时会生成新的vdom，和上一次的渲染结果diff就能得到变化的地方，从而转化为最小量的dom操作，高效更新视图。
+以下面这段代码为例
 
-### [VNode](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/vnode.ts) 接口定义
+```html
+<div>
+  <h1>{{ message }}</h1>
+  <button @click="updateMessage">Update Message</button>
+</div>
+```
 
-### 创建 vnode
+编译器会生成一个类型这样的 AST 结构
+
+```js
+{
+  type: 'root',
+  children: [
+    {
+      type: 'element',
+      tag: 'div',
+      children: [
+        {
+          type: 'element',
+          tag: 'h1',
+          children: [
+            {
+              type: 'text',
+              content: '{{ message }}'
+            }
+          ]
+        },
+        {
+          type: 'element',
+          tag: 'button',
+          children: [
+            {
+              type: 'text',
+              content: 'Update Message'
+            }
+          ],
+          events: {
+            click: 'updateMessage'
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+#### 转化 AST --- transform
+
+在生成 AST 后 会调用 `transform` 函数，对 AST 进行优化。这一阶段包括静态节点的识别、表达式的缓存等等，目的是为了减少运行时的计算量，提高渲染性能。
+
+<!-- TODO:后续补充 -->
+
+#### 生成渲染函数 --- generate
+
+在编译结束后，上面那段模板表达式被转为一个 `render` 函数。你可以在尝试 [Vue3 Template Explorer](https://template-explorer.vuejs.org/#eyJzcmMiOiI8ZGl2PlxuICA8aDE+e3sgbWVzc2FnZSB9fTwvaDE+XG4gIDxidXR0b24gQGNsaWNrPVwidXBkYXRlTWVzc2FnZVwiPlVwZGF0ZSBNZXNzYWdlPC9idXR0b24+XG48L2Rpdj4iLCJvcHRpb25zIjp7ImhvaXN0U3RhdGljIjp0cnVlfX0=) 转化一段模板表达式：
+
+```js
+const _hoisted_1 = ["onClick"];
+
+export function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (
+    _openBlock(),
+    _createElementBlock("div", null, [
+      _createElementVNode(
+        "h1",
+        null,
+        _toDisplayString(_ctx.message),
+        1 /* TEXT */
+      ),
+      _createElementVNode(
+        "button",
+        { onClick: _ctx.updateMessage },
+        "Update Message",
+        8 /* PROPS */,
+        _hoisted_1
+      ),
+    ])
+  );
+}
+
+// Check the console for the AST
+```
+
+最终生成的渲染函数会被存储在组件实例的 `_render` 方法中，当组件被挂载或者需要更新时，Vue 会调用 `_render` 方法生成虚拟 DOM 树。
+
+### 挂载
+
+在组件挂载阶段，Vue 会调用 `render` 函数，生成虚拟 DOM 树，并基于它创建真实 DOM 树。
+
+#### 创建 vnode
 
 ![createVNode](../../public/vue/createVNode.png)
 
-`_createVNode` 函数是创建虚拟 DOM 节点的核心方法，处理了多种类型的组件和属性，确保VNode正确构建。主要做了一下事情：
+`_createVNode` 函数是创建虚拟 DOM 节点的核心方法，处理了多种类型的组件和属性，确保 VNode 正确构建。主要做了以下事情：
 
 ### 首次调用
 
@@ -54,3 +167,9 @@ Vue3 中允许开发者基于 VNode 实现自定义的渲染器，从而实现�
 ![patch](../../public/vue/patch.png)
 
 `patch` 方法会根据不同 `type` 类型进行相应处理，在初始化渲染根节点时进入`processComponent` 方法。最终会调用 `setupRenderEffect` 方法，将 `render` 函数返回的 `vnode` 渲染成真实 DOM。`
+
+### 更新
+
+当一个依赖发生变化后，副作用会重新运行，这是会创建一个更新后的虚拟 DOM 树。运行时渲染器遍历这颗新树，将它与旧树比较，然后将必要的更新应用到真实 DOM 树上。
+
+## 带编译时信息的虚拟 DOM
