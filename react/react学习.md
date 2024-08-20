@@ -96,3 +96,63 @@ Modern build tool that contains a template for setting up React applications
 ## Setting Up a Project With Create-React-App
 
 `npx create-react-app xxx`
+
+# Working with Components、Props、and、JSX
+
+学习 React 组件、Props、JSX 核心概念
+
+## Rendering the Root Component and Strict Mode
+
+```js
+import React from "react"; // 核心功能
+import ReactDOM from "react-dom/client"; // DOM 交互
+
+function App() {
+  return <h1>Hello React!</h1>;
+}
+
+// React V18
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// React Before V18
+// React.render(<App />)
+```
+
+`<React.StrictMode>`是一个特殊的组件，不会渲染任何用户界面，而是用于帮助你在开发阶段发现潜在问题。包括：识别废弃或不推荐的生命周期、警告使用了过时 API、检测意外的副作用...
+
+## Components as Building Blocks
+
+React applications are entirely made out of components React
+
+Building blocks of user interfaces in React
+
+Piece of Ul that has its own data, logic, and appearance (how it works and looks)
+
+We build complex Uls by building multiple components and combining them
+
+Components can be reused, nested inside each other, and pass data between them
+
+## Creating And Resusing a Components
+
+---
+
+## What is JSX
+
+Declarative syntax to describe what components look like and how they work
+
+Components must return a block of JSX
+
+Extension of JavaScript that allows us to embed JavaScript, CSS, and React components into HTML
+
+Each JSX element is converted to a React.createElement function call
+
+We could use React without JSX
+
+JSX 是一个声明性语法，允许我们将 HTML、CSS、JavaScript 都集成到一个代码块中。它是 Javasript 的一个扩展，不能直接在浏览器中运行，通过 Babel 转换成 JavaScript 代码。
+
+### React Fragment
