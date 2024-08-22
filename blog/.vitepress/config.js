@@ -125,8 +125,17 @@ export default {
               { text: "组件通信方式", link: "/interview/vue/组件通信方式.md" },
               { text: "双向绑定", link: "/interview/vue/双向绑定.md" },
               { text: "响应式原理", link: "/interview/vue/响应式原理" },
-              { text: "虚拟DOM", link: "/interview/vue/虚拟DOM" },
+              { text: "渲染机制", link: "/interview/vue/渲染机制" },
               { text: "单向数据流", link: "/interview/vue/单向数据流" },
+              { text: "修饰符", link: "/interview/vue/修饰符" },
+              {
+                text: "vif vs vshow",
+                link: "/interview/vue/vif和vshow的区别",
+              },
+              {
+                text: "v2中data是一个函数",
+                link: "/interview/vue/为什么v2中data属性是一个函数",
+              },
             ],
           },
           {
