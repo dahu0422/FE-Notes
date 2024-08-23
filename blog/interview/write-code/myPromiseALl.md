@@ -32,7 +32,6 @@ const promise3 = new Promise((resolve, reject) => {
 // const promise4 = Promise.reject("err");
 
 function myPromiseAll(promises) {
-  debugger;
   return new Promise((resolve, reject) => {
     // 判断是否可迭代
     if (!promises[Symbol.iterator]) {
