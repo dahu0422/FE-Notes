@@ -219,6 +219,7 @@ Content-Length: 1234
 
    `你的请求我已收到，但这道题我不会，解不出来，先睡了`
 
-### (响应头)[https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers]
+### [响应头](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers)
 
-- `Cache-Control`
+- ETag 资源版本唯一标识符
+- Last-Modified 资源最后修改时间
