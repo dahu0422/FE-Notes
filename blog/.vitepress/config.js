@@ -50,36 +50,25 @@ export default {
         text: "JS",
         link: "/interview/js/",
         items: [
-          {
-            text: "ES6",
-            link: "/interview/js/ES6.md",
-            items: [
-              {
-                text: "箭头函数 VS 普通函数",
-                link: "/interview/js/es6/02.箭头函数 VS 普通函数.md",
-              },
-              {
-                text: "let、const、var之间的区别",
-                link: "/interview/js/es6/03.let、const、var之间的区别.md",
-              },
-            ],
-          },
-          { text: "Promise", link: "/interview/js/Promise.md" },
+          { text: "let、const、var之间的区别", link: "/interview/js/let、const、var之间的区别.md" },
+          { text: "箭头函数 VS 普通函数", link: "/interview/js/箭头函数 VS 普通函数.md" },
           { text: "数据类型", link: "/interview/js/数据类型.md" },
           { text: "数据类型检测", link: "/interview/js/数据类型检测.md" },
           { text: "数据类型转换", link: "/interview/js/数据类型转换.md" },
           { text: "new 操作符", link: "/interview/js/new操作符.md" },
           { text: "call、apply、bind", link: "/interview/js/call、apply、bind的区别.md" },
+          { text: "this 指向", link: "/interview/js/this指向.md" },
+          { text: "Promise", link: "/interview/js/Promise.md" },
+          { text: "File API", link: "/interview/js/FileAPI.md" },
           { text: "原型、原型链", link: "/interview/js/原型与原型链.md" },
           { text: "执行上下文、执行栈", link: "/interview/js/执行上下文与执行栈.md" },
           { text: "作用域、作用域链", link: "/interview/js/作用域与作用域链.md" },
-          { text: "this 指向", link: "/interview/js/this指向.md" },
+          { text: "高阶函数", link: "/interview/js/高阶函数.md" },
           { text: "闭包", link: "/interview/js/闭包.md" },
           { text: "DOM 文档对象模型", link: "/interview/js/DOM文档对象模型.md" },
           { text: "DOM 事件注册和移除", link: "/interview/js/DOM事件注册和移除.md" },
           { text: "DOM 事件传播机制", link: "/interview/js/DOM事件传播机制.md" },
-          { text: "高阶函数", link: "/interview/js/深入系列/01.高阶函数.md" },
-          { text: "事件循环", link: "/interview/js/深入系列/02.事件循环.md" },
+          { text: "事件循环", link: "/interview/js/深入系列/事件循环.md" },
         ],
       },
       {
@@ -107,18 +96,9 @@ export default {
           {
             text: "vue-router",
             items: [
-              {
-                text: "路由模式",
-                link: "/interview/vue/vue-router/路由模式.md",
-              },
-              {
-                text: "导航守卫",
-                link: "/interview/vue/vue-router/导航守卫.md",
-              },
-              {
-                text: "动态路由",
-                link: "/interview/vue/vue-router/动态路由.md",
-              },
+              { text: "路由模式", link: "/interview/vue/vue-router/路由模式.md" },
+              { text: "导航守卫", link: "/interview/vue/vue-router/导航守卫.md" },
+              { text: "动态路由", link: "/interview/vue/vue-router/动态路由.md" },
             ],
           },
         ],
