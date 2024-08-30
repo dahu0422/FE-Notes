@@ -69,6 +69,10 @@ export default {
           { text: "DOM 事件注册和移除", link: "/interview/js/DOM事件注册和移除.md" },
           { text: "DOM 事件传播机制", link: "/interview/js/DOM事件传播机制.md" },
           { text: "事件循环", link: "/interview/js/深入系列/事件循环.md" },
+          {
+            text: "函数式编程",
+            items: [{ text: "防抖与节流", link: "interview/js/防抖和节流.md" }],
+          },
         ],
       },
       {
@@ -104,8 +108,8 @@ export default {
         ],
       },
       {
-        text: "node",
-        items: [{ text: "Stream 类", link: "/interview/node/stream.md" }],
+        text: "前端工程化",
+        items: [{ text: "webpack、vite", link: "/interview/engineering/webpack、vite.md" }],
       },
       {
         text: "浏览器",
@@ -127,6 +131,10 @@ export default {
           { text: "跨域-JSONP", link: "/interview/network/跨域-JSONP.md" },
           { text: "websocket", link: "/interview/network/websocket.md" },
         ],
+      },
+      {
+        text: "node",
+        items: [{ text: "Stream 类", link: "/interview/node/stream.md" }],
       },
       {
         text: "🍣",
