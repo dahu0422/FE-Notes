@@ -1,5 +1,0 @@
-<template name="footer">
-  <view class="weui-footer">
-    <view class="weui-footer__text">Copyright &copy; 2008-2022 weui.io</view>
-  </view>
-</template>
