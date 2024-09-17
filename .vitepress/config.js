@@ -27,13 +27,11 @@ export default {
           { text: "transition 过渡", link: "/blog/css/transition.md" },
           { text: "animation 动画", link: "/blog/css/animation.md" },
           { text: "transform 变形", link: "/blog/css/transform.md" },
-          {
-            text: "media query 媒体查询",
-            link: "/blog/css/media-query.md",
-          },
+          { text: "media query 媒体查询", link: "/blog/css/media-query.md" },
           { text: "css单位", link: "/blog/css/css单位.md" },
           { text: "属性计算过程", link: "/blog/css/属性计算过程.md" },
           { text: "层叠继承规则", link: "/blog/css/层叠继承规则.md" },
+          { text: "弹性布局", link: "/blog/css/弹性布局.md" },
         ],
       },
       {
@@ -41,7 +39,9 @@ export default {
         link: "/blog/js/",
         items: [
           { text: "let、const、var之间的区别", link: "/blog/js/let、const、var之间的区别.md" },
-          { text: "箭头函数 VS 普通函数", link: "/blog/js/箭头函数 VS 普通函数.md" },
+          { text: "箭头函数 vs 普通函数", link: "/blog/js/arrowFunction_vs_function.md" },
+          { text: "Class vs Function", link: "/blog/js/Class_vs_Function.md" },
+          { text: "深浅拷贝", link: "/blog/js/深浅拷贝.md" },
           { text: "数据类型", link: "/blog/js/数据类型.md" },
           { text: "数据类型检测", link: "/blog/js/数据类型检测.md" },
           { text: "数据类型转换", link: "/blog/js/数据类型转换.md" },
@@ -86,6 +86,7 @@ export default {
               { text: "nextTick", link: "/blog/vue/nextTick" },
               { text: "watch、watchEffect", link: "/blog/vue/watch、watchEffect" },
               { text: "ref、reactive", link: "/blog/vue/ref、reactive" },
+              { text: "scoped style", link: "/blog/vue/scoped_style" },
             ],
           },
           {
@@ -132,11 +133,9 @@ export default {
         link: "/blog/write-code",
         items: [
           { text: "instanceof", link: "/blog/write-code/myInstanceof.md" },
-          { text: "new", link: "/blog/write-code/myNewFn.md" },
           { text: "apply", link: "/blog/write-code/myApply.md" },
           { text: "call", link: "/blog/write-code/myCall.md" },
           { text: "deepClone", link: "/blog/write-code/deepClone.md" },
-          { text: "防抖函数", link: "/blog/write-code/debounce.md" },
           { text: "日期格式化", link: "/blog/write-code/formatDate.md" },
           { text: "数组去重", link: "/blog/write-code/数组去重.md" },
         ],
