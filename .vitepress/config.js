@@ -23,6 +23,7 @@ export default {
         items: [
           { text: "box-sizing 盒模型", link: "/blog/css/box-sizing.md" },
           { text: "BFC 块级格式化上下文", link: "/blog/css/BFC.md" },
+          { text: "float 浮动", link: "/blog/css/浮动.md" },
           { text: "position 定位", link: "/blog/css/position.md" },
           { text: "transition 过渡", link: "/blog/css/transition.md" },
           { text: "animation 动画", link: "/blog/css/animation.md" },
@@ -53,6 +54,7 @@ export default {
           { text: "原型、原型链", link: "/blog/js/原型与原型链.md" },
           { text: "执行上下文、执行栈", link: "/blog/js/执行上下文与执行栈.md" },
           { text: "作用域、作用域链", link: "/blog/js/作用域与作用域链.md" },
+          { text: "BOM 浏览器对象模型", link: "/blog/js/BOM浏览器对象模型.md" },
           { text: "DOM 文档对象模型", link: "/blog/js/DOM文档对象模型.md" },
           { text: "DOM 事件注册和移除", link: "/blog/js/DOM事件注册和移除.md" },
           { text: "DOM 事件传播机制", link: "/blog/js/DOM事件传播机制.md" },
@@ -60,6 +62,7 @@ export default {
           {
             text: "函数式编程",
             items: [
+              { text: "闭包", link: "/blog/js/闭包.md" },
               { text: "高阶函数", link: "/blog/js/高阶函数.md" },
               { text: "防抖与节流", link: "blog/js/防抖和节流.md" },
             ],
@@ -87,6 +90,7 @@ export default {
               { text: "watch、watchEffect", link: "/blog/vue/watch、watchEffect" },
               { text: "ref、reactive", link: "/blog/vue/ref、reactive" },
               { text: "scoped style", link: "/blog/vue/scoped_style" },
+              { text: "单页面应用", link: "/blog/vue/SPA单页面应用" },
             ],
           },
           {
@@ -114,6 +118,7 @@ export default {
           { text: "TCP、UDP", link: "/blog/network/TCP、UDP.md" },
           { text: "HTTP协议", link: "/blog/network/HTTP协议.md" },
           { text: "HTTP缓存协议", link: "/blog/network/HTTP缓存协议.md" },
+          { text: "websocket", link: "/blog/network/websocket.md" },
           { text: "cookie", link: "/blog/network/cookie.md" },
           { text: "storage", link: "/blog/network/storage.md" },
           { text: "jwt", link: "/blog/network/jwt.md" },
@@ -121,7 +126,8 @@ export default {
           { text: "跨域-代理", link: "/blog/network/跨域-代理.md" },
           { text: "跨域-CORS", link: "/blog/network/跨域-CORS.md" },
           { text: "跨域-JSONP", link: "/blog/network/跨域-JSONP.md" },
-          { text: "websocket", link: "/blog/network/websocket.md" },
+          { text: "xss攻击", link: "/blog/network/安全-XSS攻击.md" },
+          { text: "CSRF攻击", link: "/blog/network/安全-CSRF攻击.md" },
         ],
       },
       {
@@ -140,14 +146,14 @@ export default {
           { text: "数组去重", link: "/blog/write-code/数组去重.md" },
         ],
       },
-      {
-        text: "项目经验",
-        items: [{ text: "投屏", link: "/blog/project-summary/投屏.md" }],
-      },
-      {
-        text: "面试总结",
-        items: [{ text: "大华", link: "/blog/experience/大华.md" }],
-      },
+      // {
+      //   text: "项目经验",
+      //   items: [{ text: "投屏", link: "/blog/project-summary/投屏.md" }],
+      // },
+      // {
+      //   text: "面试总结",
+      //   items: [{ text: "大华", link: "/blog/experience/大华.md" }],
+      // },
     ],
   },
 };
