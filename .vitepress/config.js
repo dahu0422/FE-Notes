@@ -106,7 +106,10 @@ export default {
       },
       {
         text: "前端工程化",
-        items: [{ text: "webpack、vite", link: "/blog/engineering/webpack、vite.md" }],
+        items: [
+          { text: "nvm 安装及使用", link: "/blog/engineering/nvm安装及使用.md" },
+          { text: "webpack、vite", link: "/blog/engineering/webpack、vite.md" },
+        ],
       },
       {
         text: "浏览器",
