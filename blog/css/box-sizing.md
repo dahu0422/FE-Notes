@@ -1,35 +1,33 @@
 # box-sizing 盒模型
 
-`box-sizing` 有两种常用属性：`content-box` 和 `border-box`
-
-通过代码来比较一下这两种 `box-sizing` 的区别
+`box-sizing` 有两种常用属性：`content-box` 和 `border-box`。通过代码来比较一下这两种 `box-sizing` 的区别。
 
 ```html
-<div class="box1"></div>
-<div class="box2"></div>
+<div class="border-box"></div>
+<div class="content-box"></div>
 ```
 
 ```css
-.box1 {
+.border-box {
   box-sizing: border-box;
   width: 100px;
   height: 100px;
   padding: 10px;
   border: 1px solid #ccc;
-  background: red
+  background: red;
 }
 
-.box2 {
+.content-box {
   box-sizing: content-box;
   width: 100px;
   height: 100px;
   padding: 10px;
   border: 1px solid #ccc;
-  background: blue
+  background: blue;
 }
 ```
 
-运行代码可以看出，蓝色的盒子 *box2* 明显大于红色的盒子 *box1*。
+运行代码可以看出，蓝色的盒子 _box2_ 明显大于红色的盒子 _box1_。
 
 ![box-sizing](../../public/css/box-sizing.png)
 
